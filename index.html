@@ -44,7 +44,12 @@
 .ach-streak-days strong{font-size:43px;color:#e76c2d;display:block;line-height:1.1}
 .ach-streak-days b{font-size:14px;color:#438c68}
 .ach-streak-bar{height:13px;background:#eee9df;border-radius:20px;overflow:hidden;margin:12px 0 8px}
-.ach-streak-bar i{height:100%;display:block;width:16%;background:linear-gradient(90deg,#ffb36c,#f36b39);border-radius:20px}
+.ownedrow{border:1px solid #dce9e5;border-radius:18px;padding:10px;margin-top:10px;background:#fbfdfc}
+.lvlgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:8px}
+.lvlchip{background:#e4f0eb;border-radius:12px;padding:5px 2px;text-align:center}
+.lvlchip small{display:block;font-size:10px;color:#6d827b}
+.lvlchip b{font-size:13px}
+.ach-streak-bar i{height:100%;display:block;width:0%;background:linear-gradient(90deg,#ffb36c,#f36b39);border-radius:20px}
 .ach-streak-foot{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#765b36;font-weight:bold}
 .ach-footer{text-align:center;color:#7c8983;font-size:13px;font-weight:bold;margin:18px 0 2px}
 .ach-footer span{display:inline-grid;place-items:center;background:#fff;border:1px solid #e2e9e4;border-radius:12px;width:35px;height:35px;margin-right:6px;font-size:20px;vertical-align:middle}
@@ -237,11 +242,42 @@ body{font-family:"Cairo","Tajawal",Tahoma,Arial,sans-serif}
 .tb-pl video{position:absolute;inset:0;width:100%;height:100%;background:#000;object-fit:contain}
 .tb-spin{position:absolute;inset:0;z-index:2;display:none;align-items:center;justify-content:center;background:#0008;color:#fff;font-size:13px;pointer-events:none}
 .tb-spin span{background:#000a;border-radius:20px;padding:8px 16px}
+
+/* Note studio: handwriting, typing and pinch zoom */
+.tb-sheet.note-studio{align-items:stretch;background:#1118}
+.tb-sheet.note-studio .in{width:100%;height:100%;max-height:100%;border-radius:0;padding:10px 10px 14px;display:flex;flex-direction:column;overflow:hidden}
+.note-head{display:flex;align-items:center;gap:8px;flex:none;margin-bottom:8px}.note-head h3{flex:1;margin:0;font-size:17px}
+.note-shape-panel{display:flex;align-items:center;gap:6px;padding:6px;background:#eef5f1;border-radius:10px;flex:none}.note-shape-panel select{min-width:0;flex:1;height:32px;border:1px solid #cbdcd3;border-radius:8px;background:white;font:12px Cairo;color:#30443d}.note-shape-panel input[type=color]{width:32px;height:32px;border:1px solid #cbdcd3;border-radius:7px;padding:2px;background:white}.note-shape-panel span{font:10px Cairo;color:#52675e;white-space:nowrap}.note-shape-panel button{height:30px;min-width:28px;border:1px solid #cbdcd3;border-radius:7px;background:white}.note-shape-panel b{min-width:18px;text-align:center;font:700 12px Cairo;color:#30443d}
+.note-tools{display:flex;align-items:center;gap:6px;overflow-x:auto;padding:5px 2px 9px;flex:none}
+.note-tools button{border:1px solid #d4e0da;background:#fff;border-radius:12px;min-width:40px;height:39px;padding:0 10px;font:700 13px Cairo;color:#30443d;white-space:nowrap}
+.note-tools button.active{background:#cfe8df;border-color:#3d9482;color:#176c5a}
+.note-tools input[type=color]{width:38px;height:38px;border:0;background:transparent;padding:0}
+.note-zoom{display:flex;align-items:center;gap:8px;padding:0 4px 8px;font-size:12px;color:#60746c;flex:none}.note-zoom input{flex:1;accent-color:#3d9482;min-width:70px}
+.note-viewport{position:relative;flex:1;min-height:220px;overflow:auto;background:#dce4df;border-radius:14px;padding:12px;overscroll-behavior:contain;touch-action:pan-x pan-y}
+.note-stage{position:relative;width:100%;transform-origin:top right;background:#fff;box-shadow:0 2px 12px #263b3025;touch-action:none}
+.note-stage canvas{display:block;width:100%;height:auto;touch-action:none;cursor:crosshair;background:#fff}
+.note-image-layer{position:absolute;inset:0;z-index:3;pointer-events:none}.note-image-item{position:absolute;touch-action:none;pointer-events:auto;user-select:none;border:2px dashed #4b9586;background:transparent}.note-image-item.locked{border:0;pointer-events:auto}.note-image-item img{width:100%;height:100%;display:block;object-fit:contain;pointer-events:none}.note-image-item .resize{position:absolute;width:18px;height:18px;right:-9px;bottom:-9px;border-radius:50%;background:#318b77;border:2px solid white;touch-action:none}.note-stage textarea{position:absolute;top:10%;right:7%;left:7%;width:86%;height:86%;resize:none;border:0;outline:0;background:transparent;color:#26332f;font-family:Cairo,sans-serif;font-size:1.7%;line-height:3.4%;padding:0;margin:0;direction:rtl;text-align:right;text-indent:0;vertical-align:top;white-space:pre-wrap;overflow-wrap:break-word;word-break:normal;overflow:hidden;display:block;pointer-events:none;z-index:2}.note-stage.type-mode textarea{pointer-events:auto}
+.note-stage.type-mode textarea{display:block}.note-stage.type-mode canvas{pointer-events:none}
+.note-foot{display:flex;gap:8px;flex:none;padding-top:9px}.note-foot button{flex:1;border:0;border-radius:14px;padding:12px 8px;font:700 14px Cairo;background:#e5eee9;color:#31564a}.note-foot .save{background:#3d9482;color:#fff}
+.note-hint{font-size:11px;color:#71847b;text-align:center;padding-top:5px;flex:none}
+
+.note-studio .in{gap:0!important}
+.note-video{flex:none;margin:0 0 8px;border-radius:13px;overflow:hidden;background:#101614}
+.note-video-title{padding:6px 10px;color:#eaf4ef;font:700 11px Cairo;text-align:right}
+.note-video iframe{display:block;width:100%;aspect-ratio:16/9;height:auto;min-height:0;border:0;background:#000}
+.note-viewport{min-height:145px;flex:1 1 auto;display:block!important;overflow:auto!important;touch-action:none!important;overscroll-behavior:contain;position:relative;box-sizing:border-box;padding:12px;direction:ltr!important;overflow-anchor:none}
+.note-stage{transform:none!important;max-width:none;min-width:0!important;margin:0;position:relative;display:block;flex:none;box-sizing:border-box;direction:rtl}.note-stage canvas{display:block;width:100%;height:100%;object-fit:fill}
+.note-tools{display:flex!important;flex-wrap:nowrap!important;align-items:center;justify-content:space-between;gap:3px;overflow:visible;padding:5px 1px calc(5px + env(safe-area-inset-bottom));flex:none;margin-top:auto;background:#f7faf8;border-top:1px solid #e0e9e4;border-radius:12px 12px 0 0}
+.note-tools button{flex:1 1 0;min-width:0;width:auto;height:30px;padding:0 2px;font-size:10px;line-height:1.1;border-radius:8px;white-space:nowrap}
+.note-tools input[type=color]{flex:0 0 27px;width:27px;height:27px;border:1px solid #d4e0da;border-radius:7px;background:#fff;padding:2px}
+.note-hint{padding:3px 0 5px;font-size:10px;flex:none}
+.note-foot{padding-top:7px}
+
 </style><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet"></head><body><div class="app">
 <header><button class="back" onclick="go('study')">‹</button><strong id="headtitle">الدراسة</strong><button class="back" onclick="openProfile()">☻</button></header>
 <section id="study" class="screen active">
 <div class="row"><div><div class="heading">أهلاً <span id="username">Sōnd</span> ✨</div><div class="sub">خل يومك يحسب لك</div></div><div class="face" style="width:64px;height:64px">🧑‍🚀</div></div>
-<div class="statrow"><div class="stat">◷ الموسم<b>20.5</b></div><div class="stat">⭐ النجوم<b id="stars">27</b></div><div class="stat">▣ اليوم<b id="todayHours">3</b></div></div>
+<div class="statrow"><div class="stat">◷ الموسم<b>0.0</b></div><div class="stat">⭐ النجوم<b id="stars">0</b></div><div class="stat">▣ اليوم<b id="todayHours">0</b></div></div>
 <div class="card hero"><div class="rocket">🚀</div><h2>ابدأ جلسة تركيز</h2><p>اختر المدة والنظام، وسنهتم بالباقي</p><button class="btn" onclick="openTimer()">▶ ابدأ الآن</button></div>
 <div class="live"><div class="row"><b>يدرسون الآن</b><span class="pill">● <b>7740</b></span></div><div class="muted">ننجز معاً، كل بطريقته</div><div id="students"></div><button class="btn white" onclick="showStudents()">▦ عرض القائمة (7740 من 10000)</button></div>
 <h2 class="section-title">اختصاراتك</h2><div class="sub">كل ما تحتاجه من دون مغادرة التطبيق</div>
@@ -253,7 +289,7 @@ body{font-family:"Cairo","Tajawal",Tahoma,Arial,sans-serif}
 <section id="tasks" class="screen"><div class="heading">مهام اليوم</div><div class="sub">خطوات صغيرة، إنجاز واضح</div><div class="card" style="background:#e7f3ef"><div class="row"><div><h2 style="margin:0">مهام اليوم</h2><span class="muted">أنجز مهامك واربح النجوم</span></div><span class="pill gold">⭐ 10</span></div></div><div class="taskbox"><div class="row"><b>مهامك المعتمدة</b><b id="taskcount">0/3</b></div><div id="tasklist"></div><h3 id="taskreward" style="color:#258357;text-align:center">أكمل المهام الثلاث لتحصل على 10 نجوم</h3></div><p class="notice">تتجدد يومياً بعد 11:30 ليلاً بتوقيت العراق</p></section>
 <section id="leaderboard" class="screen"><div class="heading">لوحة المتصدرين</div><div class="sub">نافس أصدقاءك واصعد إلى القمة</div><div class="tabrow"><button class="sel" onclick="leaderTab(this,'توب اليوم')">توب اليوم</button><button onclick="leaderTab(this,'الموسم')">الموسم</button><button onclick="leaderTab(this,'النجوم')">النجوم</button></div><div class="card" id="leaderlist"></div></section>
 <section id="trade" class="screen"><div class="heading">التجارة</div><div class="sub">شارعك التجاري · 4 من 10 متاجر</div><div class="shophero"><div class="row"><span class="pill">⭐ <b id="tradeStars">27</b></span><div style="text-align:right"><span class="sun">☀️</span><h2 style="margin:0">شارعي التجاري</h2><small>4 من 10 متاجر · +10 ⭐ لكل ساعة ستدي</small></div></div><div class="street"><div class="building">👗</div><div class="building">🍰</div><div class="building">☕</div></div><div class="road">━　━　━　━　━</div></div><div class="card"><div class="row"><b>حد ربحك اليومي: ⭐ 300</b><b id="dailyprofit">26 / 300</b></div><p class="muted">مكافآت متاجرك من ساعات الدراسة، بحد يومي 300 نجمة وتتصفّر 11:30 ليلاً بتوقيت العراق</p><div class="progress"><i id="profitbar" style="width:9%"></i></div></div><div class="card" style="background:#318c7e;color:white"><h2>ادرس لتربح</h2><p id="tradeRewardText">⭐ من 2 إلى 5 لكل متجر عن كل ساعة دراسة</p><button class="btn white" onclick="openTimer()">ابدأ الدراسة ▶</button></div><h2 class="section-title">متاجري</h2><div class="grid" id="myshops"></div><h2 class="section-title">سوق المباني</h2><div class="sub">اضغط المبنى لتفاصيله وشرائه</div><div class="grid3" id="buildings"></div><h2 class="section-title">أكبر التجار 🏆</h2><div class="card" id="traders"></div></section>
-<section id="farm" class="screen"><div class="heading">مزرعة الدراسة</div><div class="farmhead"><div class="muted" style="color:#fff">مزرعة</div><h1 style="margin:4px">Sōnd</h1><div class="grid3"><div class="stat">النجوم<b>⭐ <span id="farmStars">27</span></b></div><div class="stat">قيمة المزرعة<b>200</b></div><div class="stat">المحاصيل<b>1/1</b></div></div></div><div class="farmplots" id="plots"></div>
+<section id="farm" class="screen"><div class="heading">مزرعة الدراسة</div><div class="farmhead"><div class="muted" style="color:#fff">مزرعة</div><h1 style="margin:4px">Sōnd</h1><div class="grid3"><div class="stat">النجوم<b>⭐ <span id="farmStars">0</span></b></div><div class="stat">قيمة المزرعة<b>⭐ <span id="farmValue">0</span></b></div><div class="stat">المحاصيل<b>0/9</b></div></div></div><div class="farmplots" id="plots"></div>
 <div class="card" style="background:#eaf5ed">
 <h3 style="margin:0 0 8px;color:#26796e">🌱 نظام نمو المحاصيل</h3>
 <div class="muted" style="line-height:1.9">كل ساعة دراسة كاملة ترفع مستوى كل نبات مزروع مستوى واحداً. تقدر تبيع المحصول ابتداءً من المستوى 5، وعند المستوى 10 تحصل على ضعف سعر شرائه.</div>
@@ -287,18 +323,18 @@ body{font-family:"Cairo","Tajawal",Tahoma,Arial,sans-serif}
     </div>
     <div class="ach-hero-copy">
       <div class="ach-done">📖 درست اليوم</div>
-      <div class="ach-big-number" id="achTodayHero">3</div>
+      <div class="ach-big-number" id="achTodayHero">0</div>
       <h3>ساعات من التركيز</h3>
       <p>تقدم يستحق أن تفخر به.</p>
     </div>
   </div>
   <div class="ach-stats">
-    <div class="ach-stat"><div class="ach-stat-icon">▮</div><strong id="achTotalSessions">17</strong><small>إجمالي الجلسات</small></div>
-    <div class="ach-stat"><div class="ach-stat-icon">✓</div><strong id="achSuccessSessions">14</strong><small>الجلسات الناجحة</small></div>
-    <div class="ach-stat"><div class="ach-stat-icon">◷</div><strong id="achTodayHours">3</strong><small>ساعات اليوم</small></div>
-    <div class="ach-stat"><div class="ach-stat-icon">◴</div><strong id="achDailyAverage">4.1</strong><small>المتوسط اليومي</small></div>
-    <div class="ach-stat"><div class="ach-stat-icon">◧</div><strong id="achSeasonHours">20.5</strong><small>ساعات الموسم</small></div>
-    <div class="ach-stat"><div class="ach-stat-icon">★</div><strong id="achStars">27</strong><small>النجوم</small></div>
+    <div class="ach-stat"><div class="ach-stat-icon">▮</div><strong id="achTotalSessions">0</strong><small>إجمالي الجلسات</small></div>
+    <div class="ach-stat"><div class="ach-stat-icon">✓</div><strong id="achSuccessSessions">0</strong><small>الجلسات الناجحة</small></div>
+    <div class="ach-stat"><div class="ach-stat-icon">◷</div><strong id="achTodayHours">0</strong><small>ساعات اليوم</small></div>
+    <div class="ach-stat"><div class="ach-stat-icon">◴</div><strong id="achDailyAverage">0.0</strong><small>المتوسط اليومي</small></div>
+    <div class="ach-stat"><div class="ach-stat-icon">◧</div><strong id="achSeasonHours">0.0</strong><small>ساعات الموسم</small></div>
+    <div class="ach-stat"><div class="ach-stat-icon">★</div><strong id="achStars">0</strong><small>النجوم</small></div>
   </div>
   <div class="ach-streak">
     <div class="ach-streak-top">
@@ -307,14 +343,15 @@ body{font-family:"Cairo","Tajawal",Tahoma,Arial,sans-serif}
     </div>
     <div class="ach-streak-main">
       <div class="ach-fire">🔥</div>
-      <div class="ach-streak-days"><strong id="achStreak">4 يوماً</strong><b>🟢 مشتعلة اليوم</b></div>
+      <div class="ach-streak-days"><strong id="achStreak">0 يوماً</strong><b>🟢 مشتعلة اليوم</b></div>
     </div>
     <div class="ach-streak-bar"><i id="achStreakProgress"></i></div>
     <div class="ach-streak-foot">
-      <span>🏆 أفضل سلسلة: <b id="achBestStreak">4</b></span>
+      <span>🏆 أفضل سلسلة: <b id="achBestStreak">0</b></span>
       <span>باقي <b id="achRemainingDays">21</b> يوماً</span>
     </div>
   </div>
+  <button class="btn soft" style="width:100%;margin:14px 0 8px;color:#b33;border:1px solid #e5bcbc" onclick="mjResetAllAchievements()">إعادة تصفير الإنجازات والنجوم والمشتريات</button>
   <div class="ach-footer">إنجازاتك مع تطبيق مجرتي <span>🌌</span></div>
 </div>
 </section>
@@ -323,10 +360,12 @@ body{font-family:"Cairo","Tajawal",Tahoma,Arial,sans-serif}
 <nav class="nav" style="direction:ltr"><button style="direction:rtl" data-page="settings" onclick="go('settings')"><span>⚙</span>الإعدادات</button><button style="direction:rtl" data-page="events" onclick="go('events')"><span>✧</span>فعاليات</button><button style="direction:rtl" data-page="leaderboard" onclick="go('leaderboard')"><span>▥</span>التوب</button><button style="direction:rtl" data-page="study" class="active" onclick="go('study')"><span>◴</span>الدراسة</button></nav>
 <div class="modal" id="modal" onclick="if(event.target===this)closeModal()"><div class="sheet" id="sheet"></div></div>
 <script>
-let stars=27,studySeconds=0,timer=null,selectedPlot=-1,
-plots=Array.from({length:9},(_,i)=>i===2?{type:'carrot',level:4,minutes:0,buyPrice:20,paid:false}:'locked'),
-taskDone=[false,false,false],taskRewarded=false,profit=26,owned=['كشك القهوة','متجر الحلويات','محل الزهور','متجر الملابس'];
-let totalSessions=17,successfulSessions=14,todayStudyHours=3,seasonStudyHours=20.5,studyStreak=4,bestStudyStreak=4,seasonDaysRemaining=21;
+const FREE_TEST=true; // TEST MODE: shops and themes cost 0 stars. Set to false for real prices.
+let rewardedHours=0; // full study hours already paid (3 stars each)
+let stars=0,studySeconds=0,timer=null,selectedPlot=-1,
+plots=Array.from({length:9},()=>'locked'),
+taskDone=[false,false,false],taskRewarded=false,profit=0,owned=[];
+let totalSessions=0,successfulSessions=0,todayStudyHours=0,seasonStudyHours=0,studyStreak=0,bestStudyStreak=0,seasonDaysRemaining=21;
 let tradeStudyMinutes=0;
 const titles={study:'الدراسة',events:'الفعاليات',tasks:'مهام اليوم',leaderboard:'لوحة المتصدرين',trade:'التجارة',farm:'مزرعة الدراسة',settings:'الإعدادات',tube:'مجرتي تيوب',exams:'مجرة الاختبارات',achievements:'إنجازاتي',certificates:'الشهادات'};
 function go(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===id));document.getElementById('headtitle').textContent=titles[id]||id;scrollTo(0,0)}
@@ -342,86 +381,172 @@ function updateAchievements(){
  const bar=document.getElementById('achStreakProgress');if(bar)bar.style.width=Math.min(100,(studyStreak/25)*100)+'%';
 }
 
-function showModal(s){document.getElementById('sheet').innerHTML=s;document.getElementById('modal').classList.add('show')}function closeModal(){document.getElementById('modal').classList.remove('show')}
-let sessionState={duration:60,mode:'25/5',remaining:1500,phase:'focus',running:false,interval:null,startedAt:0,completedFocus:0};
-function openTimer(){
- sessionState={duration:60,mode:'25/5',remaining:1500,phase:'focus',running:false,interval:null,startedAt:0,completedFocus:0};
+function mjResetAllAchievements(){
+ if(!confirm('متأكد؟ سيتم تصفير ساعات الدراسة والإنجازات والنجوم والمشتريات نهائياً على هذا الجهاز.'))return;
+ try{
+  sessionState.running=false;clearInterval(sessionState.interval);closeModal();
+  localStorage.setItem('mj_achievements_reset_v1','1');
+  clearSessionState();
+  stars=0;studySeconds=0;rewardedHours=0;totalSessions=0;successfulSessions=0;todayStudyHours=0;seasonStudyHours=0;studyStreak=0;bestStudyStreak=0;tradeStudyMinutes=0;profit=0;
+  owned=[];if(typeof ownedCustom!=='undefined')ownedCustom=[];
+  plots=Array.from({length:9},()=>'locked');taskDone=[false,false,false];taskRewarded=false;
+  ['mj_total_study_seconds_v2','mj_store'].forEach(k=>localStorage.removeItem(k));
+  // Reset the Tube timer counters (session clock, daily goal seconds, subject/teacher hours) so they stop feeding hours back in.
+  try{
+   TS.goals=Object.assign({lectures:3,minutes:60},{day:todayKey(),doneL:0,sec:0,rewarded:false});
+   TS.stats={teacher:{},subject:{}};
+   if(typeof tsave==='function')tsave();
+  }catch(e){}
+  // Zero the static starting numbers shown in the HTML so nothing stale remains on screen.
+  ['todayHours','achTodayHours','achTodayHero','achDailyAverage','achSeasonHours','achStars','achTotalSessions','achSuccessSessions','achBestStreak'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=id==='achDailyAverage'||id==='achSeasonHours'?'0.0':'0'});
+  const seasonEl=document.querySelector('.statrow .stat:first-child b');if(seasonEl)seasonEl.textContent='0.0';
+  const streakEl=document.getElementById('achStreak');if(streakEl)streakEl.textContent='0 يوماً';
+  const streakBar=document.getElementById('achStreakProgress');if(streakBar)streakBar.style.width='0%';
+  // Remove previous versions of the locally saved study totals / store purchases.
+  for(let i=localStorage.length-1;i>=0;i--){let k=localStorage.key(i);if(k&&(/^mj_.*(study|achievement|store|owned|star|plot)/i.test(k)))localStorage.removeItem(k)}
+  sync();updateAchievements();if(typeof drawPlots==='function')drawPlots();if(typeof drawTasks==='function')drawTasks();
+  toast('تم تصفير الإنجازات والنجوم والمشتريات');
+  if(typeof window.mjCloudReset==='function')window.mjCloudReset().finally(()=>location.reload());
+  else setTimeout(()=>location.reload(),700);
+ }catch(e){console.error(e);toast('تعذر تصفير بعض البيانات؛ أعد فتح التطبيق')}
+}
+function showModal(s){document.getElementById('sheet').innerHTML=s;document.getElementById('modal').classList.add('show')}
+function applyFloatCompact(f,on){
+ f.dataset.compact=on?'1':'';
+ f.style.fontSize=on?'12px':'16px';f.style.padding=on?'6px 12px':'12px 20px';f.style.minWidth=on?'0':'190px';
+}
+// Drag support for the floating timer. Saves the position; a drag does not count as a tap.
+function attachFloatDrag(f){
+ let sx=0,sy=0,ox=0,oy=0,moved=false,drag=false;
+ try{const p=JSON.parse(localStorage.getItem('mj_float_pos')||'null');if(p){f.style.left=p.x+'px';f.style.top=p.y+'px';f.style.bottom='auto';f.style.transform='none'}}catch(e){}
+ let lp=null;
+ // Compact / full size: long-press (without moving) toggles it.
+ applyFloatCompact(f,localStorage.getItem('mj_float_compact')==='1');
+ f.addEventListener('pointerdown',e=>{drag=true;moved=false;sx=e.clientX;sy=e.clientY;const r=f.getBoundingClientRect();ox=r.left;oy=r.top;try{f.setPointerCapture(e.pointerId)}catch(err){}
+  clearTimeout(lp);lp=setTimeout(()=>{if(drag&&!moved){const on=!f.dataset.compact;applyFloatCompact(f,on);try{localStorage.setItem('mj_float_compact',on?'1':'0')}catch(err){}f._dragged=true;drag=false;updateFloatingTimer()}},550)});
+ f.addEventListener('pointermove',e=>{
+  if(!drag)return;const dx=e.clientX-sx,dy=e.clientY-sy;
+  if(!moved&&Math.hypot(dx,dy)<6)return;moved=true;clearTimeout(lp);
+  const x=Math.max(0,Math.min(innerWidth-f.offsetWidth,ox+dx)),y=Math.max(0,Math.min(innerHeight-f.offsetHeight,oy+dy));
+  f.style.left=x+'px';f.style.top=y+'px';f.style.bottom='auto';f.style.transform='none';
+ });
+ const end=()=>{if(!drag)return;drag=false;if(moved){f._dragged=true;try{localStorage.setItem('mj_float_pos',JSON.stringify({x:parseInt(f.style.left),y:parseInt(f.style.top)}))}catch(e){}}};
+ f.addEventListener('pointerup',end);f.addEventListener('pointercancel',end);
+}
+function ensureFloatingTimer(){
+ let f=document.getElementById('mjFloatingTimer');
+ if(!f){f=document.createElement('button');f.id='mjFloatingTimer';f.type='button';f.onclick=()=>{if(f._dragged){f._dragged=false;return}showActiveSession()};attachFloatDrag(f);
+ f.style.cssText='display:none;position:fixed;z-index:99999;left:50%;transform:translateX(-50%);bottom:82px;border:0;border-radius:28px;padding:12px 20px;background:#174f45;color:#fff;box-shadow:0 5px 22px #0004;font-size:16px;font-weight:800;direction:rtl;min-width:190px';
+ document.body.appendChild(f)}
+ return f;
+}
+function updateFloatingTimer(){
+ const f=ensureFloatingTimer();
+ if(document.getElementById('tubeApp')?.classList.contains('open')){f.style.display='none';return}
+ if(sessionState.running&&!document.getElementById('modal').classList.contains('show')){
+  let n=Math.max(0,sessionState.remaining),h=Math.floor(n/3600),m=Math.floor(n%3600/60),sec=n%60;
+  let clock=(h?String(h).padStart(2,'0')+':':'')+String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0');
+  f.textContent=f.dataset.compact?'⏱ '+clock:'⏱ '+clock+'　 عرض المؤقت';f.style.display='block';
+ }else f.style.display='none';
+}
+function closeModal(){document.getElementById('modal').classList.remove('show');updateFloatingTimer()}
+let sessionState={duration:60,mode:'25/5',remaining:1500,phase:'focus',running:false,interval:null,startedAt:0,completedFocus:0,focusElapsed:0,lastTick:0,targetFocusSeconds:3600};
+function openTimer(noteBookId=null){
+ if(sessionState.running){showActiveSession();return}
+ sessionState={duration:60,mode:'25/5',remaining:1500,phase:'focus',running:false,interval:null,startedAt:0,completedFocus:0,focusElapsed:0,lastTick:0,targetFocusSeconds:3600,returnToNoteId:noteBookId||null};
  showModal(`<div style="direction:rtl;text-align:right">
  <div style="width:48px;height:5px;background:#d8e4e0;border-radius:9px;margin:0 auto 24px"></div>
- <h2 style="font-size:28px">جلسة جديدة</h2><p class="muted" style="font-size:15px">اختر نشاطك وطريقة تنظيم وقتك.</p>
- <div style="display:flex;justify-content:flex-start;margin:18px 0"><button class="pill" id="activityBtn" onclick="toggleActivity()" style="background:#fff0b8;color:#72551b;padding:13px 20px">☼　غير دراسة</button></div>
+ <h2 style="font-size:28px">جلسة جديدة</h2><p class="muted" style="font-size:15px">اختر مدة الدراسة. الوقت يُحسب بدقة حتى عند التنقل إلى مجرتي تيوب.</p>
+ <div style="display:flex;justify-content:flex-start;margin:18px 0"><button class="pill" id="activityBtn" onclick="toggleActivity()" style="background:#fff0b8;color:#72551b;padding:13px 20px">☼　دراسة</button></div>
  <div class="grid" style="margin:14px 0">
- <button class="tile" onclick="setSessionMode('open')" style="min-height:110px"><span class="gold">⭐ 300</span><b>مؤقت مفتوح</b><small>توقف وقتما تكمل</small></button>
- <button class="tile" onclick="setSessionMode('hour')" style="background:#c9f0e9;min-height:110px"><span>◷ الافتراضي</span><b>بالساعات</b><small>مدة واستراحات</small></button></div>
- <h3>مدة الجلسة</h3><div class="grid3" id="durationChoices">
- ${[30,60,120,180,240].map((m,i)=>`<button class="btn soft" onclick="chooseDuration(${m},this)" style="background:${m===60?'#ccebe4':'white'};color:#344640">${m===30?'30 دقيقة':m/60+' س'}</button>`).join('')}
+ <button class="tile" onclick="setSessionMode('open')" style="min-height:100px"><span class="gold">∞</span><b>وقت مفتوح</b><small>يستمر حتى تضغط إيقاف</small></button>
+ <button class="tile" onclick="setSessionMode('hour')" style="background:#c9f0e9;min-height:100px"><span>◷</span><b>مؤقت محدد</b><small>اختر من 30 دقيقة إلى 6 ساعات</small></button></div>
+ <h3>مدة الدراسة</h3><div class="grid3" id="durationChoices">
+ ${[30,60,120,180,240,300,360].map(m=>`<button class="btn soft" onclick="chooseDuration(${m},this)" style="background:${m===60?'#ccebe4':'white'};color:#344640">${m<60?m+' دقيقة':m/60+' ساعة'}</button>`).join('')}
  </div>
  <h3 style="margin-top:22px">نظام التركيز والاستراحة</h3>
- <div class="grid"><button class="btn soft" onclick="chooseMode('25/5',this)">✓　25 / 5</button><button class="btn soft" onclick="chooseMode('50/10',this)">🔥　50 / 10</button></div>
+ <div class="grid"><button class="btn soft" onclick="chooseMode('25/5',this)">25 / 5</button><button class="btn soft" onclick="chooseMode('50/10',this)">50 / 10</button></div>
  <button class="btn white" style="margin-top:10px;border:1px solid #9ba9a4" onclick="chooseMode('none',this)">∞　بدون استراحة</button>
  <button class="btn" style="margin-top:24px;padding:19px" onclick="beginStudySession()">▶　بدء الجلسة</button>
  </div>`);
 }
 function toggleActivity(){let b=document.getElementById('activityBtn');if(b)b.textContent=b.textContent.includes('غير دراسة')?'☼　دراسة':'☼　غير دراسة'}
-function setSessionMode(v){sessionState.mode=v;toast(v==='open'?'تم اختيار المؤقت المفتوح':'تم اختيار نظام الساعات')}
-function chooseDuration(m,b){sessionState.duration=m;document.querySelectorAll('#durationChoices button').forEach(x=>x.style.background='white');b.style.background='#ccebe4'}
+function setSessionMode(v){if(v==='open'){sessionState.mode='open';sessionState.targetFocusSeconds=0;toast('تم اختيار الوقت المفتوح')}else{sessionState.mode='25/5';sessionState.targetFocusSeconds=sessionState.duration*60;toast('تم اختيار المؤقت المحدد')}}
+function chooseDuration(m,b){sessionState.duration=m;sessionState.targetFocusSeconds=m*60;document.querySelectorAll('#durationChoices button').forEach(x=>x.style.background='white');b.style.background='#ccebe4'}
 function chooseMode(m,b){sessionState.mode=m;document.querySelectorAll('.sheet .btn.soft').forEach(x=>x.style.background='white');b.style.background='#ccebe4'}
+function showActiveSession(){
+ showModal(`<div id="studySessionUI" style="direction:rtl;text-align:center;padding:5px 0"><div class="row"><button class="back" onclick="resetSession()">↻</button><b style="font-size:22px">جلسة الدراسة مستمرة</b><button class="back" onclick="closeSessionView()">➜</button></div><div class="timer" id="sessionClock">00:00</div><p id="sessionPhaseLabel">وقت التركيز</p><p class="muted" id="sessionPlan"></p><button class="btn" onclick="finishStudySession()">إنهاء الجلسة وحفظ الوقت</button><button class="btn white" onclick="closeSessionView()">إخفاء المؤقت</button></div>`);
+ paintSessionClock();
+}
 function beginStudySession(){
  closeModal();
- let cycle=sessionState.mode==='50/10'?50:25;
- sessionState.phase='focus';sessionState.remaining=sessionState.mode==='open'?0:Math.min(cycle,sessionState.duration)*60;
- sessionState.completedFocus=0;sessionState.running=true;
- showModal(`<div id="studySessionUI" style="direction:rtl;text-align:center;padding:5px 0">
- <div class="row"><button class="back" onclick="resetSession()">↻</button><b style="font-size:22px">جلسة الدراسة</b><button class="back" onclick="closeSessionView()">➜</button></div>
- <div class="grid" style="margin:16px 0"><button class="shortcut" onclick="toast('تم فتح القالب الكامل تجريبياً')">⛶　القالب الكامل</button><button class="shortcut" onclick="go('tube');closeSessionView()">▶　مجرتي تيوب</button></div>
- <button class="shortcut purple" onclick="toast('مجرة الاختبارات')">▣　مجرة الاختبارات</button>
- <div class="card" style="background:#edf2f1"><b>خصمك يسبخت</b><p class="muted">fatim h. ليس داخل الششن الآن</p></div>
- <div class="card" style="background:#e6f5ef"><b>فريقك يدرس</b><p class="muted">5 من 9 من زملائك يدرسون الآن</p><button class="btn white" onclick="showStudents()">عرض الفريق</button></div>
- <div class="card"><div class="row"><b>مهام اليوم</b><b id="sessionTaskCount">3/3</b></div><p class="muted">✓　✓　✓　 أحسنت، ربحت 10 نجوم ⭐</p></div>
- <div style="border-radius:32px;padding:28px 15px;background:linear-gradient(145deg,#c7e3dc,#f7e0d2)">
- <div class="pill">📖　وقت الدراسة</div>
- <div style="margin:22px auto;width:min(75vw,300px);height:min(75vw,300px);border-radius:50%;background:white;border:9px solid #eaf3f1;display:flex;flex-direction:column;align-items:center;justify-content:center">
- <div style="font-size:42px;color:#408f83">▣</div><div id="sessionClock" style="font-size:48px;font-weight:900">25:00</div><div id="sessionPhaseLabel" class="muted">وقت التركيز</div>
- </div>
- <div class="pill" style="padding:14px;margin:8px">⌛　المتبقي حتى نهاية الجلسة الكاملة</div>
- <div class="muted" id="sessionPlan">1 ساعة · 25 دقيقة دراسة و5 دقائق استراحة</div></div>
- <button class="btn" style="margin-top:16px;padding:18px" onclick="takeEarlyBreak()">🧘　استراحة مبكرة</button>
- <button class="btn white" style="margin-top:9px;border:1px solid #87938f" onclick="toast('ميزة المؤقت العائم تتطلب إذن العرض فوق التطبيقات من نظام الهاتف')">▣　إظهار مؤقت صغير فوق التطبيقات</button>
- <button class="btn soft" style="margin-top:9px" onclick="toast('دردشة الجلسة غير متصلة بخادم حالياً')">▣　فتح دردشة السنشن</button>
- <button class="btn white" style="margin-top:9px;color:#c65b68;border:1px solid #87938f" onclick="cancelStudySession()">×　إلغاء السنشن وخصم نجمتين</button>
- <div class="live" style="margin-top:16px"><b>يدرسون الآن　● 11216</b><p class="muted">ننجز معاً، كل بطريقته</p><button class="btn white" onclick="showStudents()">عرض الطلاب النشطين</button></div>
- </div>`);
- runSessionClock();
+ let isOpen=sessionState.mode==='open';
+ sessionState.phase='focus';sessionState.remaining=isOpen?0:sessionState.duration*60;
+ sessionState.targetFocusSeconds=isOpen?0:sessionState.duration*60;
+ sessionState.focusElapsed=0;sessionState.completedFocus=0;sessionState.running=true;sessionState.lastTick=Date.now();sessionState.startedAt=sessionState.lastTick;
+ showActiveSession();updateFloatingTimer();runSessionClock();
 }
 function paintSessionClock(){
  const el=document.getElementById('sessionClock');if(!el)return;
- let n=Math.max(0,sessionState.remaining),m=Math.floor(n/60),sec=n%60;
- el.textContent=String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0');
- document.getElementById('sessionPhaseLabel').textContent=sessionState.phase==='focus'?'وقت التركيز':'وقت الاستراحة';
+ let n=Math.max(0,sessionState.remaining),h=Math.floor(n/3600),m=Math.floor(n%3600/60),sec=n%60;
+ el.textContent=(h?String(h).padStart(2,'0')+':':'')+String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0');
+ const phase=document.getElementById('sessionPhaseLabel');if(phase)phase.textContent=sessionState.phase==='focus'?'وقت التركيز':'وقت الاستراحة';
+ const plan=document.getElementById('sessionPlan');if(plan)plan.textContent='وقت الدراسة المنجز: '+formatStudyTime(sessionState.focusElapsed);
 }
+function formatStudyTime(n){let h=Math.floor(n/3600),m=Math.floor(n%3600/60),sec=n%60;return (h?h+' ساعة ':'')+(m?m+' دقيقة ':'')+sec+' ثانية'}
 function runSessionClock(){
- clearInterval(sessionState.interval);paintSessionClock();
+ clearInterval(sessionState.interval);sessionState.lastTick=Date.now();
  sessionState.interval=setInterval(()=>{
  if(!sessionState.running)return;
- if(sessionState.mode==='open'){sessionState.remaining++;paintSessionClock();return}
- sessionState.remaining--;
- if(sessionState.remaining<=0){
-  if(sessionState.phase==='focus'){
-   sessionState.completedFocus++;sessionState.phase='break';
-   sessionState.remaining=(sessionState.mode==='50/10'?10:5)*60;toast('انتهى التركيز، حان وقت الاستراحة');
-  }else{
-   sessionState.phase='focus';let cycle=sessionState.mode==='50/10'?50:25;
-   sessionState.remaining=Math.min(cycle,Math.max(1,sessionState.duration-sessionState.completedFocus*cycle))*60;
-   toast('انتهت الاستراحة، عُد للتركيز');
-  }
+ const now=Date.now(),delta=Math.max(0,Math.floor((now-sessionState.lastTick)/1000));if(!delta)return;sessionState.lastTick+=delta*1000;
+ if(sessionState.phase==='focus'){
+   const previousFocus=sessionState.focusElapsed;sessionState.focusElapsed+=delta;studySeconds+=delta;tradeStudyMinutes+=delta/60;
+   const fullHours=Math.floor(studySeconds/3600);
+   if(fullHours>rewardedHours){const gain=(fullHours-rewardedHours)*3;rewardedHours=fullHours;addStars(gain);toast('⭐ مكافأة ساعة دراسة: +'+gain+' نجوم')}
+   growCrops(delta); // crops grow by whole study seconds
+   if(sessionState.mode!=='open')sessionState.remaining=Math.max(0,sessionState.targetFocusSeconds-sessionState.focusElapsed);
+   if(sessionState.mode!=='open'&&sessionState.remaining<=0){finishStudySession();return}
+   if(sessionState.mode==='25/5'||sessionState.mode==='50/10'){
+     let cycle=(sessionState.mode==='50/10'?50:25)*60;
+     let into=sessionState.focusElapsed%cycle;
+     if(Math.floor(previousFocus/cycle)<Math.floor(sessionState.focusElapsed/cycle)){sessionState.phase='break';sessionState.remaining=(sessionState.mode==='50/10'?600:300);toast('حان وقت الاستراحة')}
+   }
+ }else{
+   sessionState.remaining=Math.max(0,sessionState.remaining-delta);
+   if(sessionState.remaining===0){sessionState.phase='focus';sessionState.remaining=sessionState.mode==='open'?0:Math.max(0,sessionState.targetFocusSeconds-sessionState.focusElapsed);toast('انتهت الاستراحة، عُد للدراسة')}
  }
- paintSessionClock();
- },1000);
+ todayStudyHours=studySeconds/3600;seasonStudyHours=Math.max(seasonStudyHours,studySeconds/3600);
+ updateAchievements();paintSessionClock();updateFloatingTimer();saveSessionState();
+ },250);
 }
-function takeEarlyBreak(){if(sessionState.phase==='focus'){sessionState.phase='break';sessionState.remaining=(sessionState.mode==='50/10'?10:5)*60;paintSessionClock();toast('بدأت الاستراحة المبكرة')}}
-function closeSessionView(){clearInterval(sessionState.interval);closeModal();sessionState.running=false}
+function takeEarlyBreak(){if(sessionState.phase==='focus'){sessionState.phase='break';sessionState.remaining=(sessionState.mode==='50/10'?600:300);paintSessionClock();toast('بدأت الاستراحة')}}
+function closeSessionView(){const noteId=sessionState.returnToNoteId;closeModal();if(noteId)tbOpenNoteBook(noteId)}
+// Session persistence: the running session is saved every tick so it survives closing the app.
+const SESSION_KEY='mj_session_v1';
+function saveSessionState(){
+ if(!sessionState.running)return;
+ try{localStorage.setItem(SESSION_KEY,JSON.stringify({mode:sessionState.mode,duration:sessionState.duration,phase:sessionState.phase,remaining:sessionState.remaining,focusElapsed:sessionState.focusElapsed,targetFocusSeconds:sessionState.targetFocusSeconds,startedAt:sessionState.startedAt,lastTick:sessionState.lastTick,savedAt:Date.now()}))}catch(e){}
+}
+function clearSessionState(){try{localStorage.removeItem(SESSION_KEY)}catch(e){}}
+// Restores an unfinished session as PAUSED. Time while the app was closed is not counted.
+function restoreSession(){
+ let s=null;try{s=JSON.parse(localStorage.getItem(SESSION_KEY)||'null')}catch(e){}
+ if(!s)return;
+ Object.assign(sessionState,s,{running:false,interval:null});
+ showModal(`<div style="direction:rtl;text-align:center"><h2>جلسة لم تكتمل</h2><p class="muted">التطبيق أُغلق أثناء الجلسة. الوقت اللي مرّ وأنت خارج التطبيق ما ينحسب.</p><p>تم حفظ ${formatStudyTime(s.focusElapsed)} حتى آخر لحظة</p><button class="btn" onclick="resumeStudySession()">استئناف الجلسة</button><button class="btn white" onclick="sessionState.running=true;finishStudySession()">إنهاء وحفظ الوقت</button></div>`);
+}
+function resumeStudySession(){
+ closeModal();if(sessionState.running)return;
+ sessionState.running=true;sessionState.lastTick=Date.now();
+ showActiveSession();updateFloatingTimer();runSessionClock();saveSessionState();
+}
+function finishStudySession(){
+ if(!sessionState.running)return;sessionState.running=false;clearInterval(sessionState.interval);
+ if(sessionState.focusElapsed>0){totalSessions++;successfulSessions++;todayStudyHours=studySeconds/3600;seasonStudyHours=Math.max(seasonStudyHours,studySeconds/3600);updateAchievements();toast('تم حفظ '+formatStudyTime(sessionState.focusElapsed)+' في إنجازاتك')}
+ sessionState.returnToNoteId=null;closeModal();updateFloatingTimer();clearSessionState();
+}
 function resetSession(){sessionState.running=false;clearInterval(sessionState.interval);closeModal();openTimer()}
-function cancelStudySession(){clearInterval(sessionState.interval);sessionState.running=false;stars=Math.max(0,stars-2);sync();closeModal();toast('تم إلغاء الجلسة وخصم نجمتين')}
+function cancelStudySession(){finishStudySession()}
 const eventData=[['☑','مهام اليوم','اختر 3 مهام واربح 10 نجوم','10'],['⌛','مجموع دراستي','كل ساعاتك في مجرتي','—'],['🏪','التجارة','متاجر تربح من دراستك','+10'],['🌲','المزرعة','ازرع واحصد وبع','—'],['🏆','تحدي الموسم','هدفك وتقدمك والمكافأة','8+'],['🏅','الإنجازات','تابع تقدمك ومكافآتك','—'],['♙','تحدي فردي','النتيجة ومنافسة مباشرة','8+'],['⟲','التعويض','تعويض سريع من هنا','—'],['👥','تحدي جماعي','نافسوا معاً','10+'],['👪','تحديات الأصدقاء','شارك أصدقاءك','30+']];
 document.getElementById('eventgrid').innerHTML=eventData.map((e,i)=>`<div class="tile" onclick="openEvent(${i})"><div class="row"><span class="ico">${e[0]}</span>${e[3]!=='—'?`<span class="pill gold">⭐ ${e[3]}</span>`:''}</div><div><b>${e[1]}</b><small>${e[2]}</small></div></div>`).join('');
 function openEvent(i){if(i===0){go('tasks');return}if(i===2){go('trade');return}if(i===3){go('farm');return}if(i===5){go('achievements');return}let e=eventData[i],extra=i===1?`<div class="detail-line">إجمالي وقت الدراسة <b>${Math.floor(studySeconds/3600)} ساعة و${Math.floor(studySeconds%3600/60)} دقيقة</b></div>`:i===6?`<label>اختر هدف التحدي</label><select class="field"><option>ساعة دراسة</option><option>3 ساعات دراسة</option><option>حل 20 سؤالاً</option></select>`:i===7?`<p>اختر جلسة فائتة لتعويضها ومتابعة تقدمك.</p><button class="btn" onclick="toast('لا توجد جلسات فائتة حالياً')">تحقق من التعويض</button>`:i===8||i===9?`<label>اسم التحدي</label><input class="field" placeholder="اكتب اسم التحدي"><label>مدة التحدي</label><select class="field"><option>يوم واحد</option><option>أسبوع</option></select>`:`<div class="progress"><i style="width:42%"></i></div>`;showModal(`<h2>${e[0]} ${e[1]}</h2><p class="muted">${e[2]}</p><div class="taskbox">${extra}</div><button class="btn" style="margin-top:12px" onclick="toast('تم تسجيل طلبك تجريبياً')">${i===8||i===9?'إنشاء تحدي':'حسناً'}</button><button class="btn soft" style="margin-top:8px" onclick="closeModal()">رجوع</button>`)}
@@ -434,9 +559,9 @@ const shopNames=[
  ['🌷','محل الزهور',3],['👗','متجر الملابس',3]
 ];
 const buildings=[
- ['🍔','مطعم البرغر',380],['📚','المكتبة',250],['🌷','محل الزهور',0],
+ ['🍔','مطعم البرغر',380],['📚','المكتبة',250],['🌷','محل الزهور',400],
  ['🏢','المول التجاري',600],['🎮','صالة الألعاب',520],['📱','متجر الإلكترونيات',450],
- ['🏫','المدرسة الأهلية',700],['🍰','متجر الحلويات',0],['☕','كشك القهوة',0],['👗','متجر الملابس',0]
+ ['🏫','المدرسة الأهلية',700],['🍰','متجر الحلويات',200],['☕','كشك القهوة',150],['👗','متجر الملابس',400]
 ];
 function buildingReward(cost){
  if(cost<=0)return ({'كشك القهوة':2,'متجر الحلويات':2,'محل الزهور':3,'متجر الملابس':3})[arguments[1]]||2;
@@ -474,16 +599,23 @@ function buildingDetails(name,cost,b){
 }
 function buyBuilding(name,n){
  if(owned.includes(name)){toast('هذا المبنى ملكك بالفعل');return}
- if(!n){toast('هذا المبنى غير متاح للشراء');return}
- if(stars<n){toast('نجومك لا تكفي لشراء هذا المبنى');return}
- stars-=n;owned.push(name);sync();renderMyShops();renderBuildings();updateProfit();
+ if(!n&&!FREE_TEST){toast('هذا المبنى غير متاح للشراء');return}
+ if(!FREE_TEST&&stars<n){toast('نجومك لا تكفي لشراء هذا المبنى');return}
+ if(!FREE_TEST)stars-=n;owned.push(name);sync();renderMyShops();renderBuildings();updateProfit();
  toast('تم شراء '+name+'! سيمنحك ⭐ '+rewardForBuilding(name)+' لكل ساعة دراسة');
+}
+// The trade daily cap resets at 23:30 Baghdad time (20:30 UTC).
+function profitDayKey(){return Math.floor((Date.now()-73800000)/86400000)}
+function rolloverProfit(){
+ const k=String(profitDayKey());
+ if(localStorage.getItem('mj_profit_day')!==k){profit=0;try{localStorage.setItem('mj_profit_day',k)}catch(e){}}
 }
 function updateProfit(){
  const el=document.getElementById('dailyprofit');if(el)el.textContent=profit+' / 300';
  const bar=document.getElementById('profitbar');if(bar)bar.style.width=(profit/3)+'%';
 }
 function applyTradeStudyMinutes(minutes){
+ rolloverProfit();
  tradeStudyMinutes+=minutes;
  let earned=0,hours=0;
  while(tradeStudyMinutes>=60){
@@ -498,46 +630,79 @@ function applyTradeStudyMinutes(minutes){
   toast('🏪 أكملت '+hours+' ساعة دراسة وربحت '+earned+' نجمة من متاجرك');
  }
 }
+rolloverProfit();updateProfit();
+restoreSession();
 renderMyShops();renderBuildings();
 const traders=['الذيبية.','🎀🦋Alaa','Noor Al_Huda','PH:MR7','١٨٠.','LEVI','يارب الياسمين معدل 97','MUSTAFA','Cris 🇵🇹','توت 🎀'];document.getElementById('traders').innerHTML=traders.map((n,i)=>`<div class="rankitem"><span class="ranknum">${i+1}</span><div class="face">${['🖤','🧑🏻‍🎤','🌷','🦊','👬','🌑','🦢','👓','⚽','🐰'][i]}</div><div class="who">${n}<small>10 متاجر · جمع ${2685-i*13} ⭐</small></div><span class="pill">⭐ 3,650</span></div>`).join('');function updateProfit(){document.getElementById('dailyprofit').textContent=profit+' / 300';document.getElementById('profitbar').style.width=(profit/3)+'%'}
 
 const cropTypes={
- carrot:{name:'جزر',emoji:'🥕',price:20,tree:false},
- wheat:{name:'قمح',emoji:'🌾',price:30,tree:false},
- tomato:{name:'طماطم',emoji:'🍅',price:35,tree:false},
- sunflower:{name:'عباد الشمس',emoji:'🌻',price:45,tree:false},
- apple:{name:'شجرة تفاح',emoji:'🍎',price:80,tree:true},
- orange:{name:'شجرة برتقال',emoji:'🍊',price:100,tree:true},
- olive:{name:'شجرة زيتون',emoji:'🫒',price:120,tree:true}
+ // price = cost to plant; sell5 / sell10 = payout when sold at level 5 / level 10
+ carrot:{name:'جزر',emoji:'🥕',price:50,sell5:100,sell10:75,tree:false},
+ wheat:{name:'قمح',emoji:'🌾',price:150,sell5:300,sell10:250,tree:false},
+ tomato:{name:'طماطم',emoji:'🍅',price:300,sell5:550,sell10:600,tree:false},
+ sunflower:{name:'عباد الشمس',emoji:'🌻',price:600,sell5:1000,sell10:1150,tree:false},
+ apple:{name:'شجرة تفاح',emoji:'🍎',price:1000,sell5:1400,sell10:1600,tree:true},
+ orange:{name:'شجرة برتقال',emoji:'🍊',price:1500,sell5:1950,sell10:2250,tree:true},
+ olive:{name:'شجرة زيتون',emoji:'🫒',price:2000,sell5:2500,sell10:2750,tree:true}
 };
 function cropSellPrice(c){
- // Level 5 pays the original purchase price; level 10 pays double.
- return Math.round(c.buyPrice*(1+(c.level-5)/5));
+ // Payout for a plot: interpolates from the level-5 price to the level-10 price.
+ const t=cropTypes[c.type];if(!t||c.level<5)return 0;
+ return Math.round(t.sell5+(t.sell10-t.sell5)*Math.min(1,(c.level-5)/5));
 }
-function growCrops(minutes){
+// Visual stage per level: seed -> sprout -> young -> full plant, bigger as it grows.
+function growthVisual(v){
+ const c=cropTypes[v.type];const L=v.level;
+ let icon,size;
+ if(L<=2){icon='🌱';size=22}
+ else if(L<=4){icon='🌿';size=28}
+ else if(L<=6){icon=c.emoji;size=34}
+ else if(L<=8){icon=c.emoji;size=42}
+ else{icon=c.emoji;size=50}
+ if(L>=10)icon='✨'+icon+'✨';
+ return {icon,size};
+}
+// Value of one plant at a given level: starts at its price (level 1), reaches sell5 at level 5, sell10 at level 10.
+function plantValue(type,L){
+ const t=cropTypes[type];if(!t)return 0;
+ if(L<=5)return Math.round(t.price+(t.sell5-t.price)*(Math.max(1,L)-1)/4);
+ return Math.round(t.sell5+(t.sell10-t.sell5)*Math.min(1,(L-5)/5));
+}
+// Refreshes the farm value, the owned plants list and each plant's value per level.
+function renderFarmValue(){
+ sync(); // keep the farm star count equal to the real balance
+ let total=0;const counts={};
+ plots.forEach(p=>{if(p&&typeof p==='object'){total+=plantValue(p.type,p.level);counts[p.type]=(counts[p.type]||0)+1}});
+ const fv=document.getElementById('farmValue');if(fv)fv.textContent=total;
+}
+// Study seconds collected toward the next level (whole seconds, 3600 per level).
+function plantSecs(v){return typeof v.secs==='number'?v.secs:Math.floor((v.minutes||0)*60)}
+function growCrops(seconds){
  let gained=0;
  plots.forEach(c=>{
   if(c && typeof c==='object' && c.level<10){
-   c.minutes+=minutes;
-   while(c.minutes>=60 && c.level<10){c.minutes-=60;c.level++;gained++}
-   if(c.level>=10)c.minutes=0;
+   c.secs=Math.floor(plantSecs(c)+seconds);
+   while(c.secs>=3600 && c.level<10){c.secs-=3600;c.level++;gained++}
+   if(c.level>=10)c.secs=0;
   }
  });
  drawPlots();
- if(selectedPlot>=0 && plots[selectedPlot] && typeof plots[selectedPlot]==='object')selectPlot(selectedPlot);
+ if(selectedPlot>=0 && plots[selectedPlot] && typeof plots[selectedPlot]==='object' && document.querySelector('#sheet .plotpop'))selectPlot(selectedPlot);
  if(gained)toast('🌱 نمت محاصيلك! ارتفع مستوى '+gained+' من المحاصيل');
 }
 function drawPlots(){
+ if(plots[0]==='locked')plots[0]='empty'; // first plot is always open, online or offline
  const host=document.getElementById('plots');
  host.innerHTML=plots.map((v,i)=>{
   if(v==='locked')return `<div class="plot" onclick="selectPlot(${i})"><span>🔒</span><b>⭐ 2000</b><small>لفتح المربع</small></div>`;
   if(v==='empty')return `<div class="plot" onclick="selectPlot(${i})"><span>＋</span><b>أرض فارغة</b><small>اضغط للزراعة</small></div>`;
-  const c=cropTypes[v.type],pct=Math.round(v.minutes/60*100);
-  return `<div class="plot crop" onclick="selectPlot(${i})" style="position:relative"><span style="font-size:35px">${c.emoji}</span><b>${c.name}</b><small>المستوى ${v.level}/10</small><small>⏳ ${v.level>=10?'جاهز للبيع':pct+'% نحو المستوى التالي'}</small></div>`;
+  const c=cropTypes[v.type],pct=Math.round(plantSecs(v)/3600*100);
+  return `<div class="plot crop" onclick="selectPlot(${i})" style="position:relative"><span style="font-size:${growthVisual(v).size}px">${growthVisual(v).icon}</span><b>${c.name}</b><small>المستوى ${v.level}/10</small><small>⏳ ${v.level>=10?'جاهز للبيع':pct+'% نحو المستوى التالي'}</small></div>`;
  }).join('');
  const active=plots.filter(x=>x && typeof x==='object').length;
  const count=document.querySelector('#farm .farmhead .grid3 .stat:nth-child(3) b');
  if(count)count.textContent=active+'/9';
+ renderFarmValue();
 }
 function selectPlot(i){
  selectedPlot=i;
@@ -547,17 +712,20 @@ function selectPlot(i){
   return;
  }
  if(v==='empty'){
-  info.innerHTML=`<b>المربع ${i+1} فارغ</b><p class="muted">اختر بذرة أو شجرة لزراعتها. ينمو كل محصول ساعة دراسة لكل مستوى.</p><div class="grid">`+
+  info.textContent='';
+  showModal(`<div class="plotpop" style="direction:rtl;text-align:center"><h3 style="margin:6px 0">المربع ${i+1} فارغ</h3><p class="muted">اختر نبات لزراعته. ينمو كل نبات ساعة دراسة لكل مستوى.</p><div class="grid">`+
    Object.entries(cropTypes).map(([key,c])=>`<div class="storecard"><div class="storepic">${c.emoji}</div><b>${c.name}</b><small>سعر الشراء ⭐ ${c.price}</small><button class="btn soft" onclick="plant(${i},'${key}')">شراء وزراعة</button></div>`).join('')+
-   `</div>`;
+   `</div></div>`);
   return;
  }
- const c=cropTypes[v.type],progress=v.level>=10?100:Math.round(v.minutes/60*100),sell=cropSellPrice(v);
- info.innerHTML=`<div style="text-align:center"><div style="font-size:48px">${c.emoji}</div><h2 style="margin:4px">${c.name}</h2><b>المستوى ${v.level} من 10</b><div class="progress"><i style="width:${progress}%"></i></div><p class="muted">${v.level>=10?'وصل للمستوى الأعلى!':`درس ${v.minutes} من 60 دقيقة للمستوى التالي`}</p></div>
+ const c=cropTypes[v.type],secs=plantSecs(v),progress=v.level>=10?100:Math.round(secs/3600*100),sell=cropSellPrice(v);
+ const levelStrip=Array.from({length:10},(_,k)=>{const L=k+1,cur=L===v.level;return `<div class="lvlchip" style="${cur?'background:#26796e;color:#fff':''}"><small style="${cur?'color:#fff':''}">م${L}</small><b>${plantValue(v.type,L)}</b></div>`}).join('');
+ info.textContent='';
+ showModal(`<div class="plotpop" style="text-align:center"><div style="font-size:${growthVisual(v).size+20}px">${growthVisual(v).icon}</div><h2 style="margin:4px">${c.name}</h2><b>المستوى ${v.level} من 10</b><div class="progress"><i style="width:${progress}%"></i></div><p class="muted">${v.level>=10?'وصل للمستوى الأعلى!':`درس ${secs} من 3600 ثانية للمستوى التالي`}</p><div class="lvlgrid">${levelStrip}</div></div>
  <div class="detail-line"><span>سعر الشراء</span><b>⭐ ${v.buyPrice}</b></div>
  <div class="detail-line"><span>سعر البيع الحالي</span><b>⭐ ${v.level>=5?sell:'يُتاح من المستوى 5'}</b></div>
  ${v.level>=5?`<button class="btn" style="margin-top:12px" onclick="sellCrop(${i})">بيع المحصول مقابل ⭐ ${sell}</button>`:`<button class="btn" style="margin-top:12px" disabled>يُتاح البيع عند المستوى 5</button>`}
- <button class="btn white" style="margin-top:8px" onclick="drawPlots();selectPlot(${i})">تحديث التقدم</button>`;
+ <button class="btn white" style="margin-top:8px" onclick="drawPlots();selectPlot(${i})">تحديث التقدم</button>`);
 }
 function unlockPlot(i){
  if(stars<2000){toast('تحتاج 2000 نجمة لفتح المربع');return}
@@ -566,13 +734,13 @@ function unlockPlot(i){
 function plant(i,type){
  const c=cropTypes[type];if(!c)return;
  if(stars<c.price){toast('نجومك لا تكفي لشراء '+c.name);return}
- stars-=c.price;plots[i]={type,level:1,minutes:0,buyPrice:c.price,paid:true};
- sync();drawPlots();selectPlot(i);toast('تم شراء وزراعة '+c.name+' 🌱');
+ stars-=c.price;plots[i]={type,level:1,secs:0,buyPrice:c.price,paid:true};
+ sync();closeModal();drawPlots();selectPlot(i);toast('تم شراء وزراعة '+c.name+' 🌱');
 }
 function sellCrop(i){
  const c=plots[i];if(!c || typeof c!=='object'||c.level<5){toast('لا يمكن البيع قبل المستوى 5');return}
  const value=cropSellPrice(c),name=cropTypes[c.type].name;
- plots[i]='empty';addStars(value);drawPlots();
+ plots[i]='empty';addStars(value);closeModal();drawPlots();
  document.getElementById('plotinfo').textContent=`تم بيع ${name} وربحت ⭐ ${value}`;
  toast('تم بيع المحصول مقابل '+value+' نجمة ⭐');
 }
@@ -588,9 +756,9 @@ const customItems=[
  {name:'دارك ويب',cat:'الألوان',price:300,preview:'',bg:'linear-gradient(135deg,#5289f4,#27b6e8)'}, {name:'دارك ويب 2',cat:'الألوان',price:400,preview:'',bg:'linear-gradient(135deg,#b56cf0,#7954df)'}, {name:'البنت العصبية',cat:'الإطارات',price:500,preview:'🌸'}, {name:'الأرنب والثعلب',cat:'الإطارات',price:650,preview:'🐰🦊'}, {name:'فتيات القوة',cat:'الإطارات',price:800,preview:'💖'}, {name:'المحقق كونان',cat:'الإطارات',price:900,preview:'🕵️'}, {name:'قالب بنوتة',cat:'الإطارات',price:1000,preview:'🎀',bg:'linear-gradient(135deg,#ff9acb,#f4c5e6)'}, {name:'قطة',cat:'الإطارات',price:1200,preview:'🐱'},
  {name:'ذهبي ملكي',cat:'الألوان',price:1500,preview:'',bg:'linear-gradient(135deg,#fff0a8,#e9b83d,#fff5c5)'}, {name:'الماس',cat:'الألوان',price:1500,preview:'',bg:'linear-gradient(135deg,#baf4ff,#3bbce9)'}, {name:'فضي ملكي',cat:'الألوان',price:2000,preview:'',bg:'linear-gradient(135deg,#f5f7fa,#aab6c8,#e8edf4)'}, {name:'لؤلؤي',cat:'الألوان',price:2000,preview:'',bg:'linear-gradient(135deg,#f7b7e8,#a7d8ff,#c27cf0)'}, {name:'Neon SS',cat:'الألوان',price:3000,preview:'',bg:'linear-gradient(135deg,#f000b8,#8c26ef,#00c9ff)'}, {name:'عاصفة السمو',cat:'الثيمات',price:3000,preview:'',bg:'linear-gradient(135deg,#8057d8,#f39a32)'}, {name:'بني',cat:'الثيمات',price:3500,preview:'',bg:'linear-gradient(135deg,#b77a52,#74452e)'}, {name:'المجرة',cat:'الثيمات',price:5000,preview:'🌌',bg:'radial-gradient(circle,#7135ad,#100c30)'}, {name:'المجرة 2',cat:'الثيمات',price:10000,preview:'🌠',bg:'radial-gradient(circle,#2862a8,#071329)'}, {name:'الطبيعة',cat:'الثيمات',price:13000,preview:'🌳',bg:'linear-gradient(135deg,#f2b65c,#458c62)'}, {name:'الكواكب',cat:'الثيمات',price:15000,preview:'🪐',bg:'radial-gradient(circle,#e4a04b,#17285d)'}, {name:'Neon',cat:'الثيمات',price:18000,preview:'🌃',bg:'linear-gradient(135deg,#111b63,#d500aa,#08d8ed)'}, {name:'لومبيا',cat:'الثيمات',price:20000,preview:'✨',bg:'radial-gradient(circle,#25d8ed,#12346c,#11152f)'}
 ];
-let ownedCustom=['بدون ملصق (الطبيعي)'],activeProfileSticker='☺',activeTheme='';
+let ownedCustom=[],activeProfileSticker='☺',activeTheme='';
 function renderCustomStore(category='الكل',button=null){if(button){document.querySelectorAll('#customTabs button').forEach(x=>x.classList.remove('sel'));button.classList.add('sel')}document.getElementById('customStars').textContent=stars;let list=customItems.filter(x=>category==='الكل'||x.cat===category);document.getElementById('customGrid').innerHTML=list.map(x=>{let own=ownedCustom.includes(x.name),preview=x.bg?`<div class="custom-preview" style="background:${x.bg}"></div>`:`<div class="custom-preview ${x.cat==='الثيمات'?'circle':''}">${x.preview}</div>`;return `<div class="custom-item">${preview}<b>${x.name}</b><div class="custom-price">⭐ ${x.price===0?'مجاني':x.price}</div><button class="btn ${own?'owned':'soft'}" onclick="customAction('${x.name}')">${own?(activeProfileSticker===x.preview||activeTheme===x.name?'مفعّل':'تفعيل'):(x.price===0?'تفعيل الآن':'شراء الآن')}</button></div>`}).join('')}
-function customAction(name){let item=customItems.find(x=>x.name===name);if(!item)return;if(!ownedCustom.includes(name)){if(stars<item.price){toast('رصيدك لا يكفي · تحتاج '+item.price+' نجمة');return}stars-=item.price;ownedCustom.push(name);sync();toast('تم شراء '+name+' بنجاح')}if(item.cat==='الملصقات'||item.cat==='الإطارات'){activeProfileSticker=item.preview||'☺';toast('تم تفعيل '+name+' في الملف الشخصي')}else{activeTheme=name;document.documentElement.style.setProperty('--bg',item.bg||'#f7f8f0');toast('تم تفعيل ثيم '+name)}renderCustomStore(document.querySelector('#customTabs button.sel')?.textContent||'الكل')}
+function customAction(name){let item=customItems.find(x=>x.name===name);if(!item)return;if(!ownedCustom.includes(name)){if(!FREE_TEST&&stars<item.price){toast('رصيدك لا يكفي · تحتاج '+item.price+' نجمة');return}if(!FREE_TEST)stars-=item.price;ownedCustom.push(name);sync();toast('تم شراء '+name+' بنجاح')}if(item.cat==='الملصقات'||item.cat==='الإطارات'){activeProfileSticker=item.preview||'☺';toast('تم تفعيل '+name+' في الملف الشخصي')}else{activeTheme=name;applyThemeStyle(name);toast('تم تفعيل ثيم '+name)}renderCustomStore(document.querySelector('#customTabs button.sel')?.textContent||'الكل')}
 renderCustomStore('الكل');
 document.getElementById('examgrid').innerHTML=[['📘','الوزاري','أسئلة وزارية حسب المادة'],['📝','امتحانات شهرية','اختبر مستواك'],['📚','الملازم','مراجعات وملخصات'],['⏱️','اختبار سريع','أسئلة بوقت محدد']].map(x=>`<div class="tile" onclick="toast('تم فتح ${x[1]} تجريبياً')"><span class="ico">${x[0]}</span><b>${x[1]}</b><small>${x[2]}</small></div>`).join('');(document.getElementById('achievementgrid')||{}).innerHTML=[['🔥','سلسلة الدراسة','3 أيام متتالية'],['⭐','جامع النجوم','جمعت 27 نجمة'],['📖','قارئ نشيط','أكملت جلسات دراسة'],['🌱','مزارع مبتدئ','زرعت أول محصول']].map(x=>`<div class="tile"><span class="ico">${x[0]}</span><b>${x[1]}</b><small>${x[2]}</small></div>`).join('');
 
@@ -615,8 +783,30 @@ const todayKey=()=>new Date().toISOString().slice(0,10);
 let TS=store.get('mj_tube',null)||{lectures:{},lists:[{id:'saved',name:'المحفوظات',ids:[]}],subjects:[],teachers:[],notes:[],
  goals:{lectures:3,minutes:60,day:todayKey(),doneL:0,sec:0,rewarded:false},
  set:{topTimer:true,topStyle:'bar',sideTimer:false,sideShape:'piece',autoNext:true},last:null,stats:{teacher:{},subject:{}},hideTimer:false,key:''};
+TS.noteBooks=Array.isArray(TS.noteBooks)?TS.noteBooks:[];TS.noteDrafts=TS.noteDrafts&&typeof TS.noteDrafts==='object'?TS.noteDrafts:{};TS.notes=Array.isArray(TS.notes)?TS.notes:[];
 if(!TS.goals||TS.goals.day!==todayKey())TS.goals=Object.assign({lectures:3,minutes:60},{day:todayKey(),doneL:0,sec:0,rewarded:false});
-const tsave=()=>store.set('mj_tube',TS);
+// Keep note books and their contents in an independent storage record. The main
+// app record can become large; a failed write there must not hide the notebooks.
+const NOTE_VAULT_KEY='mj_notes_v2';
+function noteVaultSave(){
+ try{localStorage.setItem(NOTE_VAULT_KEY,JSON.stringify({noteBooks:TS.noteBooks||[],noteDrafts:TS.noteDrafts||{},savedAt:Date.now()}));return true}
+ catch(e){return false}
+}
+try{
+ const vault=JSON.parse(localStorage.getItem(NOTE_VAULT_KEY)||'null');
+ if(vault&&typeof vault==='object'){
+  const oldBooks=Array.isArray(TS.noteBooks)?TS.noteBooks:[];
+  const vaultBooks=Array.isArray(vault.noteBooks)?vault.noteBooks:[];
+  const byId=new Map(oldBooks.map(b=>[b.id,b]));vaultBooks.forEach(b=>byId.set(b.id,b));
+  TS.noteBooks=[...byId.values()];
+  TS.noteDrafts=Object.assign({},TS.noteDrafts||{},vault.noteDrafts||{});
+ }
+}catch(e){}
+const tsave=()=>{
+ // Do not duplicate large note snapshots inside the general app record.
+ const core=Object.assign({},TS);delete core.noteBooks;delete core.noteDrafts;
+ store.set('mj_tube',core);noteVaultSave();
+};
 const TB={page:'home',tab:'all',query:'',results:[],listsOnly:false,teacher:null,subject:null,cur:null,queue:[],prov:0,playing:false,err:null,t:0,dur:0,fs:false,hideResume:false};
 const COLORS=['#d9434f','#3d8f80','#6a5fd0','#e08a2e','#2b7fc4','#c2488d'];
 
@@ -629,12 +819,17 @@ function lec(id){return TS.lectures[id]}
 function ensure(v){if(!TS.lectures[v.id])TS.lectures[v.id]=Object.assign({finished:false,pos:0,dur:0,addedAt:Date.now(),subject:null},v);else Object.assign(TS.lectures[v.id],{title:v.title||TS.lectures[v.id].title,channel:v.channel||TS.lectures[v.id].channel,chId:v.chId||TS.lectures[v.id].chId,dur:v.dur||TS.lectures[v.id].dur});tsave();return TS.lectures[v.id]}
 function tt(m){toast(m)}
 function sheet(html){const s=Q('#tbSheet');s.innerHTML='<div class="in"><div class="gr"></div>'+html+'</div>';s.classList.add('show')}
-function closeSheet(){Q('#tbSheet').classList.remove('show')}
+function closeSheet(){if(Q('#tbSheet')?.classList.contains('note-studio')){clearTimeout(NOTE.saveTimer);noteDraftSave()}Q('#tbSheet').classList.remove('show','note-studio')}
+window.addEventListener('popstate',()=>{
+ const sh=Q('#tbSheet');
+ if(sh?.classList.contains('note-studio'))closeSheet();
+});
 Q('#tbSheet').addEventListener('click',e=>{if(e.target.id==='tbSheet')closeSheet()});
 
 /* ---------- open / close ---------- */
-function openTube(){Q('#tubeApp').classList.add('open');tbGo(TB.cur&&TB.page==='player'?'player':TB.page==='player'?'home':TB.page);tbTick()}
-function closeTube(){Q('#tubeApp').classList.remove('open');if(TB.fs)tbFull(false)}
+function hideMainTimer(hide){const f=document.getElementById('mjFloatingTimer');if(f&&hide)f.style.display='none';else if(typeof updateFloatingTimer==='function')updateFloatingTimer()}
+function openTube(){Q('#tubeApp').classList.add('open');hideMainTimer(true);tbGo(TB.cur&&TB.page==='player'?'player':TB.page==='player'?'home':TB.page);tbTick()}
+function closeTube(){Q('#tubeApp').classList.remove('open');if(TB.fs)tbFull(false);hideMainTimer(false)}
 function tbGo(p){TB.page=p;document.querySelectorAll('.tb-nav button').forEach(b=>b.classList.toggle('on',b.dataset.p===p||(p==='player'&&b.dataset.p==='home')));
  const R={home:tbHome,player:tbPlayer,goals:tbGoals,subjects:tbSubjects,files:tbFiles,settings:tbSettings,subject:tbSubject,list:tbListPage}[p]||tbHome;R();Q('#tbMain').scrollTop=0;tbHead()}
 function tbHead(){const p=TB.page,h=Q('#tbHead');
@@ -646,7 +841,7 @@ function tbBack(){if(TB.page==='player'||TB.page==='subject'||TB.page==='list'){
 
 /* ---------- study clock pill ---------- */
 function clockInfo(){if(typeof sessionState!=='undefined'&&sessionState.running){const o=sessionState.mode==='open';const tot=sessionState.duration*60;const rem=sessionState.remaining;const pct=o?100:Math.min(100,Math.max(0,(1-rem/(sessionState.phase==='focus'?(sessionState.mode==='50/10'?3000:1500):300))*100));return{txt:fmt(rem),pct}}return{txt:'00:00',pct:0}}
-function tbTick(){const c=clockInfo();const el=Q('#tbTimer');if(!el)return;
+function tbTick(){const c=clockInfo();const noteClock=Q('#noteHeaderClock');if(noteClock)noteClock.textContent=(typeof sessionState!=='undefined'&&sessionState.running)?(TS.hideTimer?'••:••':c.txt):'00:00';const el=Q('#tbTimer');if(!el)return;
  el.style.display=TS.set.topTimer?'flex':'none';
  Q('b',el).textContent=TS.hideTimer?'••:••':c.txt;Q('.bar i',el).style.width=c.pct+'%';
  Q('.eye',el).textContent=TS.hideTimer?'🙈':'👁';
@@ -775,8 +970,210 @@ function tbRemoveFromQueue(id){TB.queue=TB.queue.filter(x=>x!==id);TS.lists.forE
 function tbDeleteLecture(id){delete TS.lectures[id];TS.lists.forEach(l=>l.ids=l.ids.filter(x=>x!==id));TB.queue=TB.queue.filter(x=>x!==id);if(TB.cur===id){TB.cur=null}tsave();closeSheet();tbGo(TB.cur?TB.page:'home')}
 function tbPlayerMenu(){const l=lec(TB.cur);if(!l)return;sheet('<h3>خيارات المحاضرة</h3><button class="opt" onclick="tbOpenYT();closeSheet()">▶ فتح على YouTube</button><button class="opt" onclick="tbNextProv();closeSheet()">⇄ تبديل المشغّل ('+PROV_NAMES[TB.prov%4]+')</button><button class="opt" onclick="tbCopyLink()">🔗 نسخ الرابط</button><button class="opt" onclick="tbItemMenu(TB.cur)">⋯ المزيد</button>')}
 function tbCopyLink(){const u='https://youtu.be/'+TB.cur;try{navigator.clipboard.writeText(u);tt('تم نسخ الرابط')}catch(e){prompt('انسخ الرابط:',u)}closeSheet()}
-function tbNote(){const l=lec(TB.cur);if(!l)return;sheet('<h3>📝 ملاحظة عند '+fmt(l.pos)+'</h3><textarea id="nt" rows="4" placeholder="اكتب ملاحظتك على هذه المحاضرة..."></textarea><button class="tb-big" onclick="tbSaveNote()">حفظ الملاحظة</button>')}
-function tbSaveNote(){const v=(Q('#nt').value||'').trim();if(!v)return;TS.notes.unshift({id:Date.now(),vid:TB.cur,text:v,time:Math.floor((lec(TB.cur)||{}).pos||0)});tsave();closeSheet();tt('تم حفظ الملاحظة ✓')}
+let NOTE={items:[],canvas:null,ctx:null,mode:'draw',color:'#26332f',size:4,zoom:1,points:new Map(),pinch:0,undo:[],vid:null,time:0,baseW:0,saveTimer:null,strokes:[],baseImage:null,baseLayer:null,paperImage:null,pages:1,activeStroke:null,shapeType:'rect',shapeColor:'#2878d0',shapeSize:5,activeShape:null};
+function tbNote(vid,bookKey,bookName){vid=vid||TB.cur||null;if(!bookKey){TB.pendingNoteVid=vid;tbNotesSheet();return;}const l=vid?lec(vid):null;NOTE={items:[],canvas:null,ctx:null,mode:'draw',color:'#26332f',size:4,zoom:1,points:new Map(),pinch:0,undo:[],vid:vid||'__notes__',bookKey:bookKey||null,bookName:bookName||'',time:Math.floor(l&&l.pos||0),baseW:0,saveTimer:null,strokes:[],baseImage:null,baseLayer:null,paperImage:null,pages:1,activeStroke:null,shapeType:'rect',shapeColor:'#2878d0',shapeSize:5,activeShape:null};
+ history.pushState({majarratiNote:true},'','#notes');
+ sheet((vid?'<div class="note-video"><iframe title="مشغل المحاضرة" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" src="'+esc(embedUrl(vid,TB.prov||0))+'"></iframe></div>':'')+(bookName?'<div style="padding:8px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;direction:rtl;font-weight:700"><span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">📄 '+esc(bookName)+'</span><span id="noteHeaderClock" style="flex:0 0 auto;direction:ltr;background:#e4f2ed;color:#26796e;border:1px solid #b9d9d0;padding:8px 12px;border-radius:12px;font-variant-numeric:tabular-nums;font-weight:900">00:00</span></div>':'')+'<div class="note-viewport" id="noteViewport"><div class="note-stage" id="noteStage"><canvas id="noteCanvas" width="1000" height="1400"></canvas><div id="noteImageLayer" class="note-image-layer"></div><textarea id="noteText" placeholder="" spellcheck="true"></textarea></div></div><div class="note-hint"></div><div class="note-tools"><button id="nImages" onclick="noteToggleImagePanel()">🖼️ الصور</button><input id="noteImageFile" type="file" accept="image/*" style="display:none" onchange="noteImageChosen(event)"><input id="notePaperFile" type="file" accept="image/*" style="display:none" onchange="notePaperChosen(event)"><button id="nShapes" onclick="noteToggleShapes()">▱ الأشكال</button><button id="nDraw" class="active" onclick="noteToggleDrawPanel()">✍️ رسم</button><button id="nType" onclick="noteMode(\'type\')">⌨️ كتابة</button><button id="nErase" onclick="noteMode(\'erase\')">⌫ ممحاة</button><button onclick="noteUndo()">↶ تراجع</button><button onclick="noteClear()">مسح الكل</button></div><div id="noteImagePanel" class="note-shape-panel" style="display:none"><button type="button" onclick="noteAddImage()">＋ إضافة صورة</button><button type="button" onclick="noteAddPaper()">▤ استبدال الورقة</button><button type="button" onclick="noteAddPage()">＋ ورقة ثانية بالأسفل</button></div><div id="noteDrawPanel" class="note-shape-panel" style="display:none"><span>لون القلم</span><input id="nColor" type="color" value="#26332f" aria-label="لون القلم" onchange="NOTE.color=this.value;noteApplyTextColor();noteMode(\'draw\')"><span>حجم الرسم</span><button onclick="noteSize(-1)">－</button><b id="notePenSize">4</b><button onclick="noteSize(1)">＋</button></div><div id="noteShapePanel" class="note-shape-panel" style="display:none"><select id="noteShapeType" aria-label="نوع الشكل" onchange="NOTE.shapeType=this.value;noteMode(\'shape\')"><option value="rect">مربع / مستطيل</option><option value="ellipse">دائرة / بيضاوي</option><option value="arrow">سهم</option><option value="line">خط مستقيم</option></select><input id="noteShapeColor" type="color" value="#2878d0" aria-label="لون الأشكال" onchange="NOTE.shapeColor=this.value;noteMode(\'shape\')"><span>لون وسماكة مستقلان</span><button onclick="noteShapeSize(-1)">－</button><button onclick="noteShapeSize(1)">＋</button></div>');
+ Q('#tbSheet').classList.add('note-studio');NOTE.canvas=Q('#noteCanvas');NOTE.ctx=NOTE.canvas.getContext('2d');const penSizeLabel=Q('#notePenSize');if(penSizeLabel)penSizeLabel.textContent=NOTE.size;notePaper();const drafts=TS.noteDrafts||(TS.noteDrafts={});const draftKey=NOTE.bookKey||NOTE.vid||TB.cur;const draft=drafts[draftKey];if(draft){NOTE.pages=Math.max(1,Math.min(20,Number(draft.pages)||1));NOTE.canvas.height=1400*NOTE.pages;NOTE.items=draft.items||[];NOTE.strokes=Array.isArray(draft.strokes)?draft.strokes:[];noteRenderItems();if(draft.paperImage){const paper=new Image();paper.onload=()=>{NOTE.paperImage=paper;noteRedrawAll()};paper.src=draft.paperImage}if(draft.baseImage||draft.image){const im=new Image();im.onload=()=>{
+   NOTE.baseImage=im;
+   const layer=document.createElement('canvas');layer.width=1000;layer.height=1400;
+   const lx=layer.getContext('2d');lx.drawImage(im,0,0,1000,1400);NOTE.baseLayer=layer;
+   noteRedrawAll()
+  };im.src=draft.baseImage||draft.image}}noteRedrawAll();const noteVP=Q('#noteViewport'),noteST=Q('#noteStage');NOTE.baseW=Math.max(240,(noteVP?.clientWidth||320)-24);if(noteST){noteST.style.width=NOTE.baseW+'px';noteST.style.height=(NOTE.baseW*1.4*NOTE.pages)+'px'}noteSyncTextLayout();if(draft&&Q('#noteText'))Q('#noteText').value=draft.text||'';noteApplyTextColor();noteBind();Q('#noteText').addEventListener('input',noteScheduleSave);Q('#noteText').addEventListener('click',()=>{const ta=Q('#noteText');if(ta){const end=ta.value.length;ta.setSelectionRange(end,end);ta.scrollTop=0;requestAnimationFrame(()=>{ta.scrollTop=0})}});Q('#noteText').addEventListener('focus',()=>{const ta=Q('#noteText');if(ta){const end=ta.value.length;ta.setSelectionRange(end,end);ta.scrollTop=0;requestAnimationFrame(()=>{ta.scrollTop=0})}});window.addEventListener('pagehide',noteDraftSave);document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'&&Q('#tbSheet')?.classList.contains('note-studio')){clearTimeout(NOTE.saveTimer);noteDraftSave()}});}
+function notePaper(){const c=NOTE.canvas,x=NOTE.ctx,pages=Math.max(1,NOTE.pages||1);x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);for(let pg=0;pg<pages;pg++){const off=pg*1400;if(pg===0&&NOTE.paperImage){x.drawImage(NOTE.paperImage,0,off,1000,1400);continue}x.strokeStyle='#d8d8d8';x.lineWidth=2;for(let y=140;y<1340;y+=34){x.beginPath();x.moveTo(70,y+off);x.lineTo(930,y+off);x.stroke()}x.strokeStyle='#333';x.lineWidth=5;x.strokeRect(28,28+off,944,1344);x.lineWidth=2;x.strokeRect(39,39+off,922,1352)}}
+function noteAddPage(){if((NOTE.pages||1)>=20){tt('وصلت للحد الأقصى 20 ورقة');return}NOTE.pages=(NOTE.pages||1)+1;const oldH=NOTE.canvas.height;NOTE.canvas.height=1400*NOTE.pages;const st=Q('#noteStage');if(st)st.style.height=(NOTE.baseW*1.4*NOTE.zoom*NOTE.pages)+'px';noteRedrawAll();noteSyncTextLayout();noteScheduleSave();const vp=Q('#noteViewport');if(vp)vp.scrollTo({top:vp.scrollHeight,behavior:'smooth'});tt('أُضيفت ورقة جديدة بالأسفل')}
+
+function noteShapePath(ctx,sh){
+ const x=Math.min(sh.x1,sh.x2),y=Math.min(sh.y1,sh.y2),w=Math.abs(sh.x2-sh.x1),h=Math.abs(sh.y2-sh.y1);
+ ctx.beginPath();
+ if(sh.type==='rect')ctx.rect(x,y,w,h);
+ else if(sh.type==='ellipse')ctx.ellipse((sh.x1+sh.x2)/2,(sh.y1+sh.y2)/2,Math.max(1,w/2),Math.max(1,h/2),0,0,Math.PI*2);
+ else if(sh.type==='line'){ctx.moveTo(sh.x1,sh.y1);ctx.lineTo(sh.x2,sh.y2)}
+ else if(sh.type==='arrow'){
+  const a=Math.atan2(sh.y2-sh.y1,sh.x2-sh.x1),head=Math.max(16,(sh.size||5)*4),ang=Math.PI/7;
+  ctx.moveTo(sh.x1,sh.y1);ctx.lineTo(sh.x2,sh.y2);
+  ctx.moveTo(sh.x2-head*Math.cos(a-ang),sh.y2-head*Math.sin(a-ang));ctx.lineTo(sh.x2,sh.y2);ctx.lineTo(sh.x2-head*Math.cos(a+ang),sh.y2-head*Math.sin(a+ang));
+ }
+}
+function noteDrawShape(sh){const c=NOTE.ctx;c.save();c.lineWidth=sh.size||5;c.strokeStyle=sh.color||'#2878d0';c.lineCap='round';c.lineJoin='round';noteShapePath(c,sh);c.stroke();c.restore()}
+function noteToggleImagePanel(){const p=Q('#noteImagePanel'),b=Q('#nImages');if(!p)return;const show=p.style.display==='none';p.style.display=show?'flex':'none';b?.classList.toggle('active',show);if(show){['noteDrawPanel','noteShapePanel'].forEach(id=>{const x=Q('#'+id);if(x)x.style.display='none'});}}
+function noteAddPaper(){const f=Q('#notePaperFile');if(f)f.click()}
+function noteCompressImage(file,maxSide=1600,quality=.78){return new Promise((resolve,reject)=>{const rd=new FileReader();rd.onerror=()=>reject(rd.error||new Error('file read'));rd.onload=()=>{const im=new Image();im.onerror=()=>reject(new Error('image decode'));im.onload=()=>{const scale=Math.min(1,maxSide/Math.max(im.width,im.height)),w=Math.max(1,Math.round(im.width*scale)),h=Math.max(1,Math.round(im.height*scale)),c=document.createElement('canvas');c.width=w;c.height=h;const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,w,h);x.drawImage(im,0,0,w,h);resolve(c.toDataURL('image/jpeg',quality))};im.src=rd.result};rd.readAsDataURL(file)})}
+async function notePaperChosen(e){const f=e.target.files&&e.target.files[0];if(!f)return;if(!f.type.startsWith('image/')){tt('اختر صورة للورقة');e.target.value='';return}if(!confirm('استبدال الورقة الحالية بالكامل؟ سيتم حذف الكتابة والرسومات والصور الموجودة عليها.')){e.target.value='';return}try{const data=await noteCompressImage(f,1800,.82),im=new Image();im.onload=()=>{NOTE.paperImage=im;NOTE.pages=1;NOTE.canvas.height=1400;const st=Q('#noteStage');if(st)st.style.height=(NOTE.baseW*1.4*NOTE.zoom)+'px';NOTE.baseLayer=null;NOTE.baseImage=null;NOTE.strokes=[];NOTE.items=[];NOTE.undo=[];NOTE.activeStroke=null;NOTE.activeShape=null;const ta=Q('#noteText');if(ta)ta.value='';noteRenderItems();noteRedrawAll();noteDraftSave();tt('تم استبدال الورقة وحفظها')};im.onerror=()=>tt('تعذر فتح صورة الورقة');im.src=data}catch(err){tt('تعذرت قراءة الصورة أو ضغطها')}finally{e.target.value=''}}
+function noteToggleDrawPanel(){const p=Q('#noteDrawPanel'),b=Q('#nDraw');if(!p)return;const show=p.style.display==='none';p.style.display=show?'flex':'none';b?.classList.toggle('active',true);if(show)noteMode('draw')}
+function noteToggleShapes(){const p=Q('#noteShapePanel'),b=Q('#nShapes');if(!p)return;const show=p.style.display==='none';p.style.display=show?'flex':'none';b?.classList.toggle('active',show);if(show){NOTE.shapeType=Q('#noteShapeType')?.value||NOTE.shapeType;NOTE.shapeColor=Q('#noteShapeColor')?.value||NOTE.shapeColor;noteMode('shape')}}
+function noteShapeSize(d){NOTE.shapeSize=Math.max(1,Math.min(20,(NOTE.shapeSize||5)+d));tt('سماكة حدود الشكل: '+NOTE.shapeSize)}
+function noteRedrawAll(){
+ const ctx=NOTE.ctx;if(!ctx)return;
+ notePaper();
+ if(NOTE.baseLayer)ctx.drawImage(NOTE.baseLayer,0,0,1000,1400);
+ else if(NOTE.baseImage)ctx.drawImage(NOTE.baseImage,0,0,1000,1400);
+ (NOTE.strokes||[]).forEach(st=>{if(st.type){noteDrawShape(st);return}if(!st.points||st.points.length<2)return;ctx.save();ctx.beginPath();ctx.lineCap='round';ctx.lineJoin='round';ctx.lineWidth=st.size||4;ctx.strokeStyle=st.color||'#26332f';ctx.moveTo(st.points[0].x,st.points[0].y);for(let j=1;j<st.points.length;j++)ctx.lineTo(st.points[j].x,st.points[j].y);ctx.stroke();ctx.restore()});if(NOTE.activeShape)noteDrawShape(NOTE.activeShape);
+}
+function notePointSegmentDistance(p,a,b){
+ const dx=b.x-a.x,dy=b.y-a.y,len=dx*dx+dy*dy;if(!len)return Math.hypot(p.x-a.x,p.y-a.y);
+ const t=Math.max(0,Math.min(1,((p.x-a.x)*dx+(p.y-a.y)*dy)/len));return Math.hypot(p.x-(a.x+t*dx),p.y-(a.y+t*dy));
+}
+function noteEraseWholeStroke(p){
+ const radius=Math.max(16,NOTE.size*3.5);let hit=-1;
+ for(let i=(NOTE.strokes||[]).length-1;i>=0&&hit<0;i--){const st=NOTE.strokes[i];if(st.type){const x=Math.min(st.x1,st.x2),y=Math.min(st.y1,st.y2),w=Math.abs(st.x2-st.x1),h=Math.abs(st.y2-st.y1);let d=Infinity;if(st.type==='rect'){const a={x,y},b={x:x+w,y},c={x:x+w,y:y+h},d0={x,y:y+h};d=Math.min(notePointSegmentDistance(p,a,b),notePointSegmentDistance(p,b,c),notePointSegmentDistance(p,c,d0),notePointSegmentDistance(p,d0,a))}else if(st.type==='ellipse'){const rx=Math.max(1,w/2),ry=Math.max(1,h/2),cx=(st.x1+st.x2)/2,cy=(st.y1+st.y2)/2,t=Math.atan2((p.y-cy)/ry,(p.x-cx)/rx),ex=cx+rx*Math.cos(t),ey=cy+ry*Math.sin(t);d=Math.hypot(p.x-ex,p.y-ey)}else{d=notePointSegmentDistance(p,{x:st.x1,y:st.y1},{x:st.x2,y:st.y2});if(st.type==='arrow')d=Math.min(d,notePointSegmentDistance(p,{x:st.x2,y:st.y2},{x:st.x2-Math.max(16,(st.size||5)*4)*Math.cos(Math.atan2(st.y2-st.y1,st.x2-st.x1)-Math.PI/7),y:st.y2-Math.max(16,(st.size||5)*4)*Math.sin(Math.atan2(st.y2-st.y1,st.x2-st.x1)-Math.PI/7)}))}if(d<=radius+(st.size||5)/2)hit=i;continue}const pts=st.points||[];for(let j=1;j<pts.length;j++){if(notePointSegmentDistance(p,pts[j-1],pts[j])<=radius+(st.size||4)/2){hit=i;break}}}
+ if(hit>=0){NOTE.strokes.splice(hit,1);noteRedrawAll();noteScheduleSave();return true}
+ // Older saved handwriting may be flattened into a raster image. Erase that
+ // layer pixel-by-pixel so the paper underneath remains visible and editable.
+ if(NOTE.baseLayer && !NOTE.paperImage){
+  const lx=NOTE.baseLayer.getContext('2d');
+  lx.save();lx.globalCompositeOperation='destination-out';
+  lx.beginPath();lx.arc(p.x,p.y,radius,0,Math.PI*2);lx.fill();lx.restore();
+  noteRedrawAll();noteScheduleSave();return true;
+ }
+ return false;
+}
+function noteSnapshot(){try{NOTE.undo.push(NOTE.canvas.toDataURL());if(NOTE.undo.length>20)NOTE.undo.shift()}catch(e){}}
+function noteApplyTextColor(){
+ const ta=Q('#noteText');if(ta)ta.style.color=NOTE.color||'#26332f';
+}
+function noteMode(m){
+ NOTE.mode=m;const imagePanel=Q('#noteImagePanel');if(imagePanel)imagePanel.style.display='none';Q('#nImages')?.classList.remove('active');const stage=Q('#noteStage');if(!stage)return;
+ stage.classList.toggle('type-mode',m==='type');
+ noteApplyTextColor();
+ ['nDraw','nType','nErase','nShapes'].forEach(id=>Q('#'+id)?.classList.toggle('active',(id==='nDraw'&&m==='draw')||(id==='nType'&&m==='type')||(id==='nErase'&&m==='erase')||(id==='nShapes'&&m==='shape')));if(m!=='draw'){const p=Q('#noteDrawPanel');if(p)p.style.display='none'}
+}
+function noteSize(d){NOTE.size=Math.max(1,Math.min(24,NOTE.size+d));const v=Q('#notePenSize');if(v)v.textContent=NOTE.size;tt('حجم الرسم: '+NOTE.size)}
+function noteSyncTextLayout(){
+ const st=Q('#noteStage'),ta=Q('#noteText');if(!st||!ta)return;
+ // The page is resized by changing its CSS width (not by transform), so
+ // derive the text metrics from that same width on every zoom update.
+ const w=parseFloat(st.style.width)||NOTE.baseW||st.clientWidth||320;
+ ta.style.fontSize=Math.max(12,w*.022)+'px';
+ ta.style.lineHeight=(w*.034)+'px';
+ ta.style.top=(140/1400*100)+'%';ta.style.height=(NOTE.pages*100-11)+'%';
+}
+function noteSetZoom(z,clientX,clientY){const vp=Q('#noteViewport'),st=Q('#noteStage');if(!st||!vp)return;if(!NOTE.baseW)NOTE.baseW=Math.max(240,vp.clientWidth-24);const old=NOTE.zoom;NOTE.zoom=Math.max(1,Math.min(6,z));const rect=vp.getBoundingClientRect(),fx=clientX==null?rect.left+vp.clientWidth/2:clientX,fy=clientY==null?rect.top+vp.clientHeight/2:clientY;const localX=fx-rect.left+vp.scrollLeft,localY=fy-rect.top+vp.scrollTop,ratio=NOTE.zoom/old;st.style.width=(NOTE.baseW*NOTE.zoom)+'px';st.style.height=(NOTE.baseW*1.4*NOTE.zoom*(NOTE.pages||1))+'px';st.style.margin='0';noteSyncTextLayout();vp.scrollLeft=Math.max(0,localX*ratio-(fx-rect.left));vp.scrollTop=Math.max(0,localY*ratio-(fy-rect.top));}
+function noteScheduleSave(){if(!NOTE||!NOTE.canvas)return;clearTimeout(NOTE.saveTimer);NOTE.saveTimer=setTimeout(noteDraftSave,250)}
+function noteDraftSave(){if(!NOTE||!NOTE.canvas||!NOTE.ctx)return false;try{TS.noteDrafts=TS.noteDrafts||{};const key=NOTE.bookKey||NOTE.vid||'__notes__';const saved={text:Q('#noteText')?.value||'',baseImage:NOTE.baseLayer?NOTE.baseLayer.toDataURL('image/jpeg',0.72):(NOTE.baseImage?NOTE.baseImage.src:''),paperImage:NOTE.paperImage?(()=>{const c=document.createElement('canvas');c.width=1000;c.height=1400;c.getContext('2d').drawImage(NOTE.paperImage,0,0,1000,1400);return c.toDataURL('image/jpeg',0.72)})():'',strokes:JSON.parse(JSON.stringify(NOTE.strokes||[])),items:JSON.parse(JSON.stringify(NOTE.items||[])),pages:NOTE.pages||1,time:NOTE.time||0,updatedAt:Date.now()};TS.noteDrafts[key]=saved;const book=(TS.noteBooks||[]).find(b=>b.key===key);if(book)book.updatedAt=saved.updatedAt;const ok=noteVaultSave();if(!ok)throw new Error('note vault quota');tsave();return true}catch(e){console.error('note autosave failed',e);tt('تعذر حفظ المسودة: مساحة الجهاز ممتلئة. قلّل الصور أو احذف ملفات قديمة');return false}}
+function noteXY(e){const r=NOTE.canvas.getBoundingClientRect();return{x:(e.clientX-r.left)/r.width*NOTE.canvas.width,y:(e.clientY-r.top)/r.height*NOTE.canvas.height}}
+function noteAddImage(){Q('#noteImageFile')?.click()}
+async function noteImageChosen(e){const f=e.target.files&&e.target.files[0];if(!f)return;if(!f.type.startsWith('image/')){tt('اختر ملف صورة');e.target.value='';return}try{const data=await noteCompressImage(f,1500,.76),im=new Image();im.onload=()=>{const w=Math.min(360,im.width),h=Math.min(420,im.height);NOTE.items=NOTE.items||[];NOTE.items.push({src:data,x:320,y:450,w,h,locked:false,placed:false});NOTE.pendingPlacement=NOTE.items.length-1;noteRenderItems();noteDraftSave();tt('اضغط على مكان الورقة لوضع الصورة')};im.onerror=()=>tt('تعذر فتح الصورة');im.src=data}catch(err){tt('تعذرت قراءة الصورة')}finally{e.target.value=''}}
+function noteRenderItems(){
+  const layer=Q('#noteImageLayer');if(!layer)return;
+  // Track every active pointer at the image layer. Any multi-finger contact
+  // invalidates tap-to-unlock for the entire gesture, even after one finger lifts.
+  if(!layer._pointerGuardInstalled){
+   layer._activeImagePointers=new Set();layer._multiPointerGesture=false;
+   document.addEventListener('pointerdown',ev=>{
+    if(layer._activeImagePointers.size===0)layer._multiPointerGesture=false;
+    layer._activeImagePointers.add(ev.pointerId);
+    if(layer._activeImagePointers.size>1){
+     layer._multiPointerGesture=true;
+     layer.querySelectorAll('.note-image-item').forEach(node=>{node._tapStart=null;node._lastTap=0;});
+    }
+   },true);
+   const releasePointer=ev=>{layer._activeImagePointers.delete(ev.pointerId);};
+   document.addEventListener('pointerup',releasePointer,true);
+   document.addEventListener('pointercancel',releasePointer,true);
+   layer._pointerGuardInstalled=true;
+  }
+  layer.innerHTML='';(NOTE.items||[]).forEach((it,i)=>{
+   const el=document.createElement('div');el.className='note-image-item'+(it.locked?' locked':'')+(it.placed?' placed':'');el.dataset.noteImageIndex=i;
+   el.style.cssText+=';position:absolute;left:'+(it.x/1000*100)+'%;top:'+(it.y/1400*100)+'%;width:'+(it.w/1000*100)+'%;height:'+(it.h/1400*100)+'%;pointer-events:auto;touch-action:none;';
+   const img=document.createElement('img');img.src=it.src;el.appendChild(img);
+   if(it.placed){
+    el.title=it.locked?'اضغط على الصورة لتحريرها':'اسحب الصورة لتحريكها';
+    el.addEventListener('pointerdown',ev=>{
+      if(ev.target.closest('.note-img-delete')||ev.target.closest('.resize'))return;
+      if(ev.button!==undefined&&ev.button!==0)return;
+      // Only a primary, single-finger pointer may participate in tap/drag.
+      if(ev.isPrimary===false||ev.pointerType==='touch'&&layer._multiPointerGesture)return;
+      ev.preventDefault();ev.stopPropagation();
+      if(it.locked){
+        // Locked images unlock ONLY after two short, stationary, single-pointer taps.
+        el._tapStart={x:ev.clientX,y:ev.clientY,t:Date.now(),id:ev.pointerId};
+        return;
+      }
+      noteItemDrag(ev,i,'move',el);
+    },{passive:false});
+    if(it.locked) el.addEventListener('pointerup',ev=>{
+      const st=el._tapStart;el._tapStart=null;
+      if(layer._multiPointerGesture||ev.isPrimary===false){el._lastTap=0;return;}
+      if(!st||st.id!==ev.pointerId||Date.now()-st.t>350||Math.hypot(ev.clientX-st.x,ev.clientY-st.y)>18)return;
+      if(ev.target.closest('.note-img-delete')||ev.target.closest('.resize'))return;
+      const now=Date.now();
+      if(el._lastTap && now-el._lastTap<400){el._lastTap=0;it.locked=false;noteRenderItems();noteScheduleSave();tt('تم فك تثبيت الصورة — اسحب لتحريكها');}
+      else {el._lastTap=now;tt('نقرتان سريعتان لتحرير الصورة');}
+    },{passive:true});
+    if(!it.locked){
+     const del=document.createElement('button');del.className='note-img-delete';del.textContent='×';del.title='حذف الصورة';del.style.cssText='position:absolute;top:2px;right:2px;z-index:5;border:0;border-radius:50%;width:28px;height:28px;background:#c62828;color:white;font-size:20px;touch-action:manipulation;';del.addEventListener('pointerdown',ev=>{ev.preventDefault();ev.stopPropagation()});del.addEventListener('click',ev=>{ev.preventDefault();ev.stopPropagation();NOTE.items.splice(i,1);noteRenderItems();noteScheduleSave()});el.appendChild(del);
+     // Double-tap the editable image to lock it again.
+     el.addEventListener('pointerup',ev=>{if(ev.target.closest('.note-img-delete')||ev.target.closest('.resize'))return;const now=Date.now();if(el._lastTap&&now-el._lastTap<420){el._lastTap=0;it.locked=true;noteRenderItems();noteScheduleSave();tt('تم تثبيت الصورة');}else{el._lastTap=now;}},true);
+     const h=document.createElement('div');h.className='resize';h.title='تكبير/تصغير';h.style.cssText='position:absolute;bottom:0;left:0;width:26px;height:26px;background:#287a67;border:2px solid white;border-radius:50%;z-index:4;touch-action:none';h.addEventListener('pointerdown',ev=>{ev.preventDefault();ev.stopPropagation();noteItemDrag(ev,i,'resize',el)});el.appendChild(h);
+    }
+   }
+   layer.appendChild(el);
+  });
+}
+
+function noteItemDrag(e,i,mode,elOverride){
+ const it=NOTE.items[i],stage=Q('#noteStage'),sx=e.clientX,sy=e.clientY,ox=it.x,oy=it.y,ow=it.w,oh=it.h,el=elOverride;let moved=false;
+ const move=ev=>{const r=stage.getBoundingClientRect();const dx=(ev.clientX-sx)/r.width*1000,dy=(ev.clientY-sy)/r.height*1400;if(mode==='move'){it.x=Math.max(0,Math.min(1000-it.w,ox+dx));it.y=Math.max(0,Math.min(1400-it.h,oy+dy))}else{it.w=Math.max(40,Math.min(1000-it.x,ow+dx));it.h=Math.max(40,Math.min(1400-it.y,oh+dy))}moved=true;if(el){el.style.left=(it.x/1000*100)+'%';el.style.top=(it.y/1400*100)+'%';el.style.width=(it.w/1000*100)+'%';el.style.height=(it.h/1400*100)+'%'}};
+ const end=()=>{window.removeEventListener('pointermove',move,true);window.removeEventListener('pointerup',end,true);window.removeEventListener('pointercancel',end,true);if(moved)noteScheduleSave()};window.addEventListener('pointermove',move,true);window.addEventListener('pointerup',end,true);window.addEventListener('pointercancel',end,true);
+}
+
+function noteBind(){
+ const c=NOTE.canvas,vp=Q('#noteViewport'),stage=Q('#noteStage');
+ if(!c._placeImageBound){c._placeImageBound=true;c.addEventListener('pointerdown',ev=>{if(NOTE.pendingPlacement==null)return;const idx=NOTE.pendingPlacement,it=NOTE.items[idx],r=stage.getBoundingClientRect();if(!it)return;const x=(ev.clientX-r.left)/r.width*1000,y=(ev.clientY-r.top)/r.height*1400;it.x=Math.max(0,Math.min(1000-it.w,x-it.w/2));it.y=Math.max(0,Math.min(1400-it.h,y-it.h/2));it.placed=true;it.locked=true;NOTE.pendingPlacement=null;noteRenderItems();noteScheduleSave();tt('تم وضع الصورة، للتحريك اضغط على الصورة لتحريرها ثم اسحب')},{passive:true})}
+ const active=new Map();let drawLast=null,gesture=null,strokeStarted=false,eraseChanged=false;
+ NOTE.baseImage=NOTE.baseImage||null;NOTE.strokes=NOTE.strokes||[];
+ const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y),mid=(a,b)=>({x:(a.x+b.x)/2,y:(a.y+b.y)/2});
+ function beginGesture(){
+  const pts=[...active.values()];if(pts.length!==2)return;
+  drawLast=null;NOTE.activeStroke=null;NOTE.activeShape=null;strokeStarted=false;
+  const m=mid(pts[0],pts[1]),r=vp.getBoundingClientRect(),mx=m.x-r.left-vp.clientLeft,my=m.y-r.top-vp.clientTop;
+  gesture={distance:Math.max(1,dist(pts[0],pts[1])),zoom:NOTE.zoom,anchorX:(vp.scrollLeft+mx)/NOTE.zoom,anchorY:(vp.scrollTop+my)/NOTE.zoom};
+ }
+ function updateGesture(){
+  const pts=[...active.values()];if(pts.length!==2||!gesture)return;
+  const m=mid(pts[0],pts[1]),r=vp.getBoundingClientRect(),mx=m.x-r.left-vp.clientLeft,my=m.y-r.top-vp.clientTop;
+  const z=Math.max(1,Math.min(6,gesture.zoom*dist(pts[0],pts[1])/gesture.distance));NOTE.zoom=z;if(!NOTE.baseW)NOTE.baseW=Math.max(240,vp.clientWidth-24);
+  stage.style.width=(NOTE.baseW*z)+'px';stage.style.height=(NOTE.baseW*1.4*z*(NOTE.pages||1))+'px';noteSyncTextLayout();
+  vp.scrollLeft=Math.max(0,gesture.anchorX*z-mx);vp.scrollTop=Math.max(0,gesture.anchorY*z-my);
+ }
+ vp.onpointerdown=e=>{
+  if(e.pointerType==='mouse'&&e.button!==0)return;
+  active.set(e.pointerId,{x:e.clientX,y:e.clientY});try{vp.setPointerCapture(e.pointerId)}catch(_){}
+  if(active.size===1&&e.target===c&&NOTE.mode!=='type'){
+   drawLast=noteXY(e);strokeStarted=false;eraseChanged=false;
+   if(NOTE.mode==='draw')NOTE.activeStroke={color:NOTE.color,size:NOTE.size,points:[{x:drawLast.x,y:drawLast.y}]};
+   else if(NOTE.mode==='shape')NOTE.activeShape={type:NOTE.shapeType||'rect',color:NOTE.shapeColor||'#2878d0',size:NOTE.shapeSize||5,x1:drawLast.x,y1:drawLast.y,x2:drawLast.x,y2:drawLast.y};
+   else if(NOTE.mode==='erase')eraseChanged=noteEraseWholeStroke(drawLast);
+  } else if(active.size===2){beginGesture()}
+  else if(active.size>2){drawLast=null;NOTE.activeStroke=null;NOTE.activeShape=null;strokeStarted=false}
+ };
+ vp.onpointermove=e=>{
+  if(!active.has(e.pointerId))return;active.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(active.size===2){updateGesture();drawLast=null;NOTE.activeStroke=null;strokeStarted=false;return}
+  if(active.size!==1||!drawLast||NOTE.mode==='type')return;
+  const p=noteXY(e);
+  if(NOTE.mode==='shape'&&NOTE.activeShape){NOTE.activeShape.x2=p.x;NOTE.activeShape.y2=p.y;noteRedrawAll()}
+  else if(NOTE.mode==='erase'){if(noteEraseWholeStroke(p))eraseChanged=true}
+  else if(NOTE.mode==='draw'&&NOTE.activeStroke){
+   NOTE.activeStroke.points.push({x:p.x,y:p.y});
+   const pts=NOTE.activeStroke.points,ctx=NOTE.ctx;ctx.save();ctx.beginPath();ctx.lineCap='round';ctx.lineJoin='round';ctx.lineWidth=NOTE.activeStroke.size;ctx.strokeStyle=NOTE.activeStroke.color;ctx.moveTo(pts[pts.length-2].x,pts[pts.length-2].y);ctx.lineTo(p.x,p.y);ctx.stroke();ctx.restore();strokeStarted=true;
+  }
+  drawLast=p;
+ };
+ const finish=e=>{
+  active.delete(e.pointerId);if(active.size<2)gesture=null;
+  if(active.size===0){
+   if(NOTE.activeStroke&&NOTE.activeStroke.points.length>1){NOTE.strokes.push(NOTE.activeStroke);noteScheduleSave()}
+   if(NOTE.activeShape&&Math.hypot(NOTE.activeShape.x2-NOTE.activeShape.x1,NOTE.activeShape.y2-NOTE.activeShape.y1)>3){NOTE.strokes.push(NOTE.activeShape);noteScheduleSave()}
+   NOTE.activeShape=null;NOTE.activeStroke=null;drawLast=null;strokeStarted=false;
+   if(eraseChanged)noteScheduleSave();eraseChanged=false;
+  }
+ };
+ vp.onpointerup=finish;vp.onpointercancel=finish;vp.onlostpointercapture=finish;
+}
+function noteUndo(){if(NOTE.strokes&&NOTE.strokes.length){NOTE.strokes.pop();noteRedrawAll();noteScheduleSave();return}if(!NOTE.undo.length)return;const im=new Image();im.onload=()=>{NOTE.ctx.clearRect(0,0,1000,1400);NOTE.ctx.drawImage(im,0,0);NOTE.baseImage=im};im.src=NOTE.undo.pop();noteScheduleSave()}
+function noteClear(){if(!confirm('تمسح كل الرسم من الورقة؟'))return;NOTE.strokes=[];NOTE.baseImage=null;NOTE.baseLayer=null;notePaper();noteScheduleSave()}
 const QUIZ=['لخّص أهم 3 أفكار في هذه المحاضرة بجملك.','ما القانون أو القاعدة الأهم هنا؟ اكتبها من ذاكرتك.','اكتب سؤالاً وزارياً محتملاً من هذا الدرس، ثم أجب عنه.','ما النقطة التي لم تفهمها وتريد مراجعتها؟'];
 function tbQuiz(i){i=i||0;if(i>=QUIZ.length){closeSheet();tt('أحسنت! راجعت المحاضرة ✓');return}sheet('<h3>❓ اختبرني ('+(i+1)+'/'+QUIZ.length+')</h3><p style="font-size:15px;line-height:1.9">'+QUIZ[i]+'</p><textarea id="qa" rows="4" placeholder="اكتب إجابتك دون النظر للفيديو"></textarea><button class="tb-big" onclick="tbQuizNext('+i+')">'+(i<QUIZ.length-1?'التالي':'إنهاء')+'</button><button class="tb-big ghost" onclick="tbGo(\'player\');closeSheet();toast(\'تم فتح مجرة الاختبارات\');closeTube();go(\'exams\')">فتح مجرة الاختبارات</button>')}
 function tbQuizNext(i){const v=(Q('#qa').value||'').trim();if(v)TS.notes.unshift({id:Date.now(),vid:TB.cur,text:'❓ '+QUIZ[i]+'\n'+v,time:Math.floor((lec(TB.cur)||{}).pos||0)});tsave();tbQuiz(i+1)}
@@ -820,7 +1217,7 @@ function tbSettings(){const fin=allLectures().filter(v=>v.finished).length;
  '<button class="r" onclick="tbFinishedSheet()"><span class="ic">✔</span><span class="tx">المحاضرات التي أنهيتها</span><span class="v">'+fin+'</span><span class="ch">‹</span></button>'+
  '<button class="r" onclick="tbMyStudy()"><span class="ic">🏆</span><span class="tx">دراستي<small>أفضل مدرسي بساعاتك · شاركه كصورة</small></span><span class="ch">‹</span></button>'+
  '<button class="r" onclick="tbStatsSheet()"><span class="ic">📊</span><span class="tx">الإحصائيات<small>كم درست من كل مادة</small></span><span class="ch">‹</span></button>'+
- '<button class="r" onclick="tbNotesSheet()"><span class="ic">📝</span><span class="tx">ملاحظاتي</span><span class="v">'+TS.notes.length+'</span><span class="ch">‹</span></button></div>'+
+ '<button class="r" onclick="tbNotesSheet()"><span class="ic">📝</span><span class="tx">مسوداتي وملاحظاتي</span><span class="v">'+(TS.noteBooks||[]).length+'</span><span class="ch">‹</span></button></div>'+
  '<div class="tb-sh">المؤقت</div><div class="tb-set">'+
  '<div class="r"><span class="ic">⏱</span><span class="tx">المؤقت العلوي</span>'+swb(TS.set.topTimer,'tgl(\'topTimer\')')+'</div>'+
  '<button class="r" onclick="tbCycle(\'topStyle\',[\'bar\',\'pill\',\'big\'],{bar:\'شريط\',pill:\'حبة\',big:\'كبير\'})"><span class="ic">🎨</span><span class="tx">شكله وحجمه</span><span class="v">'+({bar:'شريط',pill:'حبة',big:'كبير'})[TS.set.topStyle]+'</span><span class="ch">‹</span></button>'+
@@ -836,7 +1233,23 @@ function tbSettings(){const fin=allLectures().filter(v=>v.finished).length;
 function tbCycle(k,arr,names){TS.set[k]=arr[(arr.indexOf(TS.set[k])+1)%arr.length];tsave();const s=Q('#tbSide');if(s)s.className='tb-sidetm '+(TS.set.sideTimer?'show ':'')+TS.set.sideShape;tbSettings();tt('الشكل: '+names[TS.set[k]]);document.body.dataset.tbstyle=TS.set.topStyle;applyTopStyle()}
 function applyTopStyle(){const t=Q('#tbTimer');if(!t)return;const s=TS.set.topStyle;t.style.padding=s==='big'?'16px 18px':'10px 14px';Q('b',t).style.fontSize=s==='big'?'30px':'21px';Q('.bar',t).style.display=s==='pill'?'none':'block'}
 function tbFinishedSheet(){const a=allLectures().filter(v=>v.finished);sheet('<h3>المحاضرات التي أنهيتها ('+a.length+')</h3>'+(a.map(v=>'<div class="opt" onclick="closeSheet();tbPlay(\''+v.id+'\')">✔ <span style="flex:1">'+esc(v.title)+'</span></div>').join('')||'<div class="tb-empty">لم تنهِ أي محاضرة بعد.</div>'))}
-function tbNotesSheet(){sheet('<h3>ملاحظاتي ('+TS.notes.length+')</h3>'+(TS.notes.map(n=>'<div class="opt" style="display:block"><b style="font-size:12px;color:#3d8f80">'+esc((lec(n.vid)||{}).title||'')+' · '+fmt(n.time)+'</b><div style="white-space:pre-wrap;font-weight:400;margin:4px 0">'+esc(n.text)+'</div><button class="tb-fol" onclick="tbDelNote('+n.id+')" style="padding:6px 14px;font-size:12px">حذف</button></div>').join('')||'<div class="tb-empty">لا ملاحظات بعد. استخدم زر «ملاحظة» داخل المحاضرة.</div>'))}
+function tbStartNamedNote(){const el=Q('#tbNewNoteName'),name=(el?.value||'').trim();if(!name){tt('اكتب اسم الملاحظة أولاً');el?.focus();return}const vid=TB.pendingNoteVid||null,id='nb_'+Date.now(),key='book:'+id;TS.noteBooks=Array.isArray(TS.noteBooks)?TS.noteBooks:[];TS.noteDrafts=TS.noteDrafts||{};TS.noteBooks.push({id,key,name,vid,createdAt:Date.now(),updatedAt:Date.now()});TS.noteDrafts[key]={text:'',strokes:[],items:[],pages:1,time:0,updatedAt:Date.now()};tsave();tbNote(vid,key,name)}
+function tbNotesSheet(){
+ TS.noteBooks=Array.isArray(TS.noteBooks)?TS.noteBooks:[];TS.noteDrafts=TS.noteDrafts||{};
+ // Bring forward older per-lecture drafts as named notebooks, preserving their contents.
+ Object.keys(TS.noteDrafts).forEach(k=>{if(k.startsWith('book:')||TS.noteBooks.some(b=>b.key===k))return;const l=lec(k);TS.noteBooks.push({id:'legacy_'+k,key:k,name:(l&&l.title)||'مسودة قديمة',vid:k,createdAt:Date.now()})});
+ TS.noteBooks.sort((a,b)=>(Number(!!b.pinned)-Number(!!a.pinned))||(Number(b.updatedAt||b.createdAt||0)-Number(a.updatedAt||a.createdAt||0)));
+ tsave();
+ const rows=TS.noteBooks.map(b=>'<div class="opt" style="display:flex;align-items:center;gap:7px;flex-wrap:wrap"><button style="flex:1;min-width:120px;text-align:right;border:0;background:transparent;color:inherit;padding:5px" onclick="tbOpenNoteBook(\''+esc(b.id)+'\')"><span>'+(b.pinned?'📌':'📄')+'</span> '+esc(b.name)+' <small style="opacity:.65">فتح</small></button><button class="mini" style="background:#e4f2ed;color:#26796e" onclick="tbStartNoteTimer(\''+esc(b.id)+'\')" title="بدء مؤقت الدراسة لهذه المسودة">▶ ⏱ ابدأ</button><button class="mini" onclick="tbRenameNoteBook(\''+esc(b.id)+'\')" title="تعديل الاسم">✏️</button><button class="mini" onclick="tbTogglePinNoteBook(\''+esc(b.id)+'\')" title="تثبيت أو إلغاء التثبيت">'+(b.pinned?'📍':'📌')+'</button><button class="mini" onclick="tbDeleteNoteBook(\''+esc(b.id)+'\')" title="حذف المسودة">🗑️</button></div>').join('');
+ sheet('<h3>📝 ملاحظاتي ومسوداتي</h3><p style="color:var(--muted);font-size:13px;margin:0 0 12px">من هنا تگدر تفتح أي ملاحظة محفوظة وتكملها، أو تغيّر اسمها أو تثبّتها أو تحذفها.</p>'+(rows||'<div class="tb-empty">ما عندك مسودات بعد.</div>')+'<button class="opt" onclick="tbCreateNoteBook()">＋ إنشاء ملاحظة جديدة</button>'+((TS.notes||[]).length?'<div class="tb-sh">ملاحظات المحاضرات المحفوظة</div>':'')+(TS.notes||[]).map(n=>'<div class="opt" style="display:block"><b>'+esc((lec(n.vid)||{}).title||'')+'</b><div>'+esc(n.text||'')+'</div></div>').join(''));
+}
+function tbStartCurrentNoteTimer(){const b=(TS.noteBooks||[]).find(x=>x.key===NOTE.bookKey||x.id===NOTE.bookKey);if(!b){tt('تعذر تحديد المسودة الحالية');return;}openTimer(b.id)}
+function tbStartNoteTimer(id){const b=(TS.noteBooks||[]).find(x=>x.id===id);if(!b)return;closeSheet();openTimer(id);}
+function tbRenameNoteBook(id){const b=(TS.noteBooks||[]).find(x=>x.id===id);if(!b)return;const name=prompt('اكتب الاسم الجديد للمسودة:',b.name);if(!name||!name.trim())return;b.name=name.trim();b.updatedAt=Date.now();tsave();tbNotesSheet();}
+function tbTogglePinNoteBook(id){const b=(TS.noteBooks||[]).find(x=>x.id===id);if(!b)return;b.pinned=!b.pinned;tsave();tbNotesSheet();tt(b.pinned?'تم تثبيت المسودة':'تم إلغاء تثبيت المسودة');}
+function tbDeleteNoteBook(id){const b=(TS.noteBooks||[]).find(x=>x.id===id);if(!b)return;if(!confirm('تحذف مسودة «'+b.name+'» نهائياً؟ لا يمكن التراجع عن الحذف.'))return;TS.noteBooks=TS.noteBooks.filter(x=>x.id!==id);if(b.key&&TS.noteDrafts)delete TS.noteDrafts[b.key];tsave();tbNotesSheet();tt('تم حذف المسودة');}
+function tbCreateNoteBook(){const name=prompt('اكتب اسم المسودة الجديدة:');if(!name||!name.trim())return;const id='nb_'+Date.now(),key='book:'+id,vid=TB.cur||null;TS.noteBooks=TS.noteBooks||[];TS.noteBooks.push({id,key,name:name.trim(),vid,createdAt:Date.now()});TS.noteDrafts=TS.noteDrafts||{};TS.noteDrafts[key]={text:'',strokes:[],items:[],pages:1,time:0,updatedAt:Date.now()};tsave();tbOpenNoteBook(id)}
+function tbOpenNoteBook(id){const b=(TS.noteBooks||[]).find(x=>x.id===id);if(!b)return;b.key=b.key||('book:'+b.id);TS.noteDrafts=TS.noteDrafts||{};if(!TS.noteDrafts[b.key])TS.noteDrafts[b.key]={text:'',strokes:[],items:[],pages:1,time:0,updatedAt:Date.now()};tsave();closeSheet();if(b.vid&&lec(b.vid)){TB.cur=b.vid;if(!TB.queue.includes(b.vid))TB.queue=[b.vid,...TB.queue]}tbNote(b.vid||null,b.key,b.name)}
 function tbDelNote(id){TS.notes=TS.notes.filter(n=>n.id!==id);tsave();tbNotesSheet();tbSettings()}
 function sortedStats(o){return Object.entries(o).sort((a,b)=>b[1]-a[1])}
 function tbStatsSheet(){const s=sortedStats(TS.stats.subject);const mx=(s[0]||[0,1])[1];sheet('<h3>الإحصائيات</h3>'+(s.map(([n,v])=>'<div class="tb-goal"><div class="tx">'+esc(n)+'<small>'+(v/3600).toFixed(1)+' ساعة</small><div class="pr"><i style="width:'+Math.round(v/mx*100)+'%"></i></div></div></div>').join('')||'<div class="tb-empty">ستظهر هنا ساعات مشاهدتك لكل مادة.</div>'))}
@@ -1117,9 +1530,9 @@ try{tg.ready();tg.expand()}catch(e){}
 var T=null,sid=null,last='',ok=false,API='api';
 function call(a,d,ka){d=d||{};d.a=a;d.t=T;return fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d),keepalive:!!ka}).then(function(r){return r.json()})}
 function g(n){try{return eval(n)}catch(e){return undefined}}
-function snap(){return{stars:stars,profileName:profileName,profileBio:profileBio,totalSessions:totalSessions,successfulSessions:successfulSessions,studyStreak:studyStreak,bestStudyStreak:bestStudyStreak,activeTheme:g('activeTheme')||null,activeProfileSticker:g('activeProfileSticker')||null,plots:plots}}
+function snap(){return{studySeconds:studySeconds,owned:owned,ownedCustom:ownedCustom,stars:stars,profileName:profileName,profileBio:profileBio,totalSessions:totalSessions,successfulSessions:successfulSessions,studyStreak:studyStreak,bestStudyStreak:bestStudyStreak,activeTheme:g('activeTheme')||null,activeProfileSticker:g('activeProfileSticker')||null,plots:plots}}
 function apply(s){if(!s)return;try{
- if(typeof s.stars==='number')stars=s.stars;
+ if(typeof s.stars==='number')stars=s.stars;if(typeof s.studySeconds==='number'){studySeconds=s.studySeconds;rewardedHours=Math.floor(studySeconds/3600)}if(Array.isArray(s.owned))owned=s.owned;if(Array.isArray(s.ownedCustom))ownedCustom=s.ownedCustom;
  if(s.profileName)profileName=s.profileName;
  if(typeof s.profileBio==='string')profileBio=s.profileBio;
  ['totalSessions','successfulSessions','studyStreak','bestStudyStreak'].forEach(function(k){if(typeof s[k]==='number')eval(k+'='+s[k])});
@@ -1129,8 +1542,10 @@ function apply(s){if(!s)return;try{
 }catch(e){}
  try{sync();updateAchievements();drawPlots()}catch(e){}}
 function names(){['username','settingsname','achName'].forEach(function(i){var e=document.getElementById(i);if(e)e.textContent=profileName})}
+try{const savedStudy=localStorage.getItem('mj_total_study_seconds_v2');if(savedStudy!==null&&localStorage.getItem('mj_achievements_reset_v1')!=='1')studySeconds=Math.max(studySeconds,Number(savedStudy)||0);rewardedHours=Math.floor(studySeconds/3600);todayStudyHours=studySeconds/3600;seasonStudyHours=Math.max(seasonStudyHours,studySeconds/3600);updateAchievements();setInterval(()=>{try{localStorage.setItem('mj_total_study_seconds_v2',String(studySeconds))}catch(e){}},2000)}catch(e){}
 function save(ka){if(!ok)return;var j;try{j=JSON.stringify(snap())}catch(e){return}if(j===last)return;last=j;call('save',{state:JSON.parse(j)},ka).catch(function(){last=''})}
-function setHours(r){todayStudyHours=r.today/60;seasonStudyHours=r.season/60;var e=document.getElementById('todayHours');if(e)e.textContent=Number(todayStudyHours.toFixed(1));try{updateAchievements()}catch(x){}}
+window.mjCloudReset=function(){last='';return call('save',{state:snap()},true)};
+function setHours(r){if(localStorage.getItem('mj_achievements_reset_v1')==='1')return;todayStudyHours=r.today/60;seasonStudyHours=r.season/60;var e=document.getElementById('todayHours');if(e)e.textContent=Number(todayStudyHours.toFixed(1));try{updateAchievements()}catch(x){}}
 function endStudy(){if(!sid)return;var id=sid;sid=null;call('study_end',{id:id}).then(function(r){if(r&&r.ok){setHours(r);toast('تم تسجيل جلستك')}}).catch(function(){})}
 function wrap(n,f){var o=window[n];if(typeof o!=='function')return;window[n]=f(o);try{eval(n+'=window[n]')}catch(e){}}
 wrap('beginStudySession',function(o){return function(){var r=o.apply(this,arguments);if(ok){call('study_start',{min:sessionState.mode==='open'?0:sessionState.duration}).then(function(x){if(x&&x.ok)sid=x.id}).catch(function(){})}return r}});
@@ -1147,11 +1562,20 @@ wrap('renderLeaders',function(o){return function(t){
 call('auth',{init:tg.initData}).then(function(r){
  if(!r||!r.ok){toast('تعذّر الاتصال بالسيرفر، الوضع المحلي فعّال');return}
  T=r.token;ok=true;
- if(r.state){apply(r.state)}else{profileName=r.name}
+ if(r.state){
+  if(localStorage.getItem('mj_achievements_reset_v1')==='1'){
+   apply(Object.assign({},r.state,{stars:0,studySeconds:0,totalSessions:0,successfulSessions:0,studyStreak:0,bestStudyStreak:0,owned:[],ownedCustom:[],plots:Array.from({length:9},()=>'locked')}));
+   stars=0;studySeconds=0;rewardedHours=0;totalSessions=0;successfulSessions=0;todayStudyHours=0;seasonStudyHours=0;studyStreak=0;bestStudyStreak=0;owned=[];if(typeof ownedCustom!=='undefined')ownedCustom=[];plots=Array.from({length:9},()=>'locked');sync();updateAchievements();
+  }else apply(r.state)
+ }else{profileName=r.name}
+ if(plots[0]==='locked')plots[0]='empty'; // first plot is open for free
+ drawPlots();
  names();last=JSON.stringify(snap());
  try{renderLeaders('توب اليوم')}catch(e){}
- call('study_end',{id:0}).then(function(x){if(x&&x.ok)setHours(x)}).catch(function(){});
+ if(localStorage.getItem('mj_achievements_reset_v1')!=='1')call('study_end',{id:0}).then(function(x){if(x&&x.ok)setHours(x)}).catch(function(){});
 }).catch(function(){toast('تعذّر الاتصال بالسيرفر، الوضع المحلي فعّال')});
+// Paint farm plots, farm value and star counters right away (online or offline).
+drawPlots();sync();
 setInterval(function(){save(false)},20000);
 document.addEventListener('visibilitychange',function(){if(document.hidden){endStudy();save(true)}});
 window.addEventListener('pagehide',function(){save(true)});
@@ -1168,9 +1592,28 @@ customItems.forEach(function(x){x.key=x.id||x.name;if(x.name==='لومبيا')x.
 if(Array.isArray(st.owned)){st.owned.forEach(function(n){if(ownedCustom.indexOf(n)<0)ownedCustom.push(n)})}
 function persist(){st.owned=ownedCustom.slice();st.sticker=activeProfileSticker;st.theme=activeTheme;try{localStorage.setItem(SK,JSON.stringify(st))}catch(e){}}
 function bgFor(n){var it=customItems.find(function(x){return x.name===n});return it&&it.bg}
+// Applies a theme across the app: background, card, text and border colours.
+// Dark themes switch the text colours to light ones so text stays readable.
+function applyThemeStyle(name){
+ let st=document.getElementById('themeStyle');
+ if(!st){st=document.createElement('style');st.id='themeStyle';document.head.appendChild(st)}
+ const item=customItems.find(function(x){return x.name===name});
+ if(!item||!item.bg){st.textContent='';document.documentElement.style.removeProperty('--bg');return}
+ const dark=/دارك|داكن|ليل|Dark|Night/i.test(name);
+ const ink=dark?'#f2f5f3':'#24332f', paper=dark?'rgba(20,32,30,.9)':'rgba(255,255,255,.92)', muted=dark?'#b9c6c1':'#82938f';
+ document.documentElement.style.setProperty('--bg',item.bg);
+ st.textContent=':root{--ink:'+ink+';--paper:'+paper+';--muted:'+muted+'}'+
+  'body{background:'+item.bg+' fixed;color:'+ink+'}'+
+  '.card,.stat,.statrow .stat,.achievements-wrap{background:'+paper+'!important;color:'+ink+'!important}'+
+  '.nav{background:'+paper+'!important}.nav button,.nav button span{color:'+muted+'!important}.nav button.active,.nav button.active span{color:'+ink+'!important}'+
+  'header{background:'+paper+'!important;color:'+ink+'!important}header button,header strong{color:'+ink+'!important}'+
+  '.heading,.sub,.muted{color:'+ink+'!important}.live,.shophero,.farmhead{background:'+paper+'!important;color:'+ink+'!important}'+
+  '.btn.white,.btn.soft{color:'+ink+'!important}';
+}
+window.applyThemeStyle=applyThemeStyle;
 function applyTimer(){var it=customItems.find(function(x){return x.key===st.sel.timer});var u=it&&it.url;document.documentElement.style.setProperty('--timerbg',u?'url('+u+')':'none');var s=document.getElementById('mjTimerCss');if(!s){s=document.createElement('style');s.id='mjTimerCss';s.textContent='.hero,#sessionView,.session-view{background-image:var(--timerbg,none)!important;background-size:cover!important;background-position:center!important}';document.head.appendChild(s)}}
 if(st.sticker)activeProfileSticker=st.sticker;
-if(st.theme){activeTheme=st.theme;var b=bgFor(st.theme);if(b)document.documentElement.style.setProperty('--bg',b)}
+if(st.theme){activeTheme=st.theme;applyThemeStyle(st.theme)}
 applyTimer();
 var tabs=document.getElementById('customTabs');
 ['قوالب المؤقت','المؤقت العائم','الأصوات','لوحات الأرقام','VIP'].forEach(function(c){var b=document.createElement('button');b.textContent=c;b.onclick=function(){renderCustomStore(c,b)};tabs.appendChild(b)});
@@ -1183,7 +1626,7 @@ document.getElementById('customGrid').innerHTML=list.map(function(x){var own=own
 var pv=x.url?'<div class="custom-preview" style="background:url('+x.url+') center/cover"></div>':x.bg?'<div class="custom-preview" style="background:'+x.bg+'"></div>':'<div class="custom-preview '+(x.cat==='الثيمات'?'circle':'')+'">'+(x.preview||({'الأصوات':'🔊','VIP':'👑','لوحات الأرقام':'🎨','قوالب المؤقت':'⏱️','المؤقت العائم':'🫧'})[x.cat]||'')+'</div>';
 return '<div class="custom-item">'+pv+'<b>'+x.name+'</b>'+(x.desc?'<small class="muted" style="display:block;font-size:11px">'+x.desc+'</small>':'')+'<div class="custom-price">⭐ '+(x.price===0?'مجاني':x.price)+'</div><button class="btn '+(o2?'owned':'soft')+'" onclick="customAction(\''+x.name.replace(/'/g,"\\'")+'\')">'+(o2?(isActive(x)?'مفعّل':'تفعيل'):(x.price===0?'تفعيل الآن':'شراء الآن'))+'</button></div>'}).join('')};
 window.customAction=customAction=function(name){var item=customItems.find(function(x){return x.name===name});if(!item)return;
-if(ownedCustom.indexOf(name)<0){if(stars<item.price){toast('رصيدك لا يكفي · تحتاج '+item.price+' نجمة');return}stars-=item.price;ownedCustom.push(name);sync();toast('تم شراء '+name+' بنجاح')}
+if(ownedCustom.indexOf(name)<0){if(!FREE_TEST&&stars<item.price){toast('رصيدك لا يكفي · تحتاج '+item.price+' نجمة');return}if(!FREE_TEST)stars-=item.price;ownedCustom.push(name);sync();toast('تم شراء '+name+' بنجاح')}
 var c=item.cat;
 if(c==='الملصقات'||c==='الإطارات'){activeProfileSticker=item.preview||'☺';toast('تم تفعيل '+name+' في الملف الشخصي')}
 else if(c==='قوالب المؤقت'){st.sel.timer=item.key;applyTimer();toast(item.url?'تم تفعيل '+name:'تم اختيار '+name+' (التصميم الرقمي المتحرك غير منقول بعد)')}
