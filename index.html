@@ -1515,6 +1515,7 @@ wrap('renderLeaders',function(o){return function(t){
   el.innerHTML=r.rows.map(function(u,i){var v=tab==='stars'?'⭐ '+u.v:(u.v/60).toFixed(1)+' ساعة';
    return '<div class="rankitem"'+(u.me?' style="background:#e4f0eb;border-radius:14px"':'')+'><span class="pill">'+(i<3?['🥇','🥈','🥉'][i]:i+1)+'</span><div class="face">🧑‍🚀</div><div class="who">'+esc(u.name)+(u.me?' (أنت)':'')+'<small>المركز '+(i+1)+'</small></div><b>'+v+'</b></div>'}).join('')
  }).catch(function(){el.innerHTML='<div class="muted" style="padding:16px;text-align:center">تعذّر تحميل المتصدرين</div>'})}});
+try{var __localSaved=localStorage.getItem('mj_local_state_v1');if(__localSaved)apply(JSON.parse(__localSaved))}catch(e){}
 call('auth',{init:tg.initData}).then(function(r){
  if(!r||!r.ok){toast('تعذّر الاتصال بالسيرفر، الوضع المحلي فعّال');return}
  T=r.token;ok=true;
@@ -1535,6 +1536,10 @@ drawPlots();sync();
 setInterval(function(){save(false)},20000);
 document.addEventListener('visibilitychange',function(){if(document.hidden){endStudy();save(true)}});
 window.addEventListener('pagehide',function(){save(true)});
+function saveLocalState(){try{localStorage.setItem('mj_local_state_v1',JSON.stringify(snap()))}catch(e){}}
+setInterval(saveLocalState,3000);
+document.addEventListener('visibilitychange',function(){if(document.hidden)saveLocalState()});
+window.addEventListener('pagehide',saveLocalState);
 })();
 </script>
 <script>
