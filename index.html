@@ -360,7 +360,6 @@ body{font-family:"Cairo","Tajawal",Tahoma,Arial,sans-serif}
 <nav class="nav" style="direction:ltr"><button style="direction:rtl" data-page="settings" onclick="go('settings')"><span>⚙</span>الإعدادات</button><button style="direction:rtl" data-page="events" onclick="go('events')"><span>✧</span>فعاليات</button><button style="direction:rtl" data-page="leaderboard" onclick="go('leaderboard')"><span>▥</span>التوب</button><button style="direction:rtl" data-page="study" class="active" onclick="go('study')"><span>◴</span>الدراسة</button></nav>
 <div class="modal" id="modal" onclick="if(event.target===this)closeModal()"><div class="sheet" id="sheet"></div></div>
 <script>
-const FREE_TEST=true; // TEST MODE: shops and themes cost 0 stars. Set to false for real prices.
 let rewardedHours=0; // full study hours already paid (3 stars each)
 let stars=0,studySeconds=0,timer=null,selectedPlot=-1,
 plots=Array.from({length:9},()=>'locked'),
@@ -386,7 +385,6 @@ function mjResetAllAchievements(){
  try{
   sessionState.running=false;clearInterval(sessionState.interval);closeModal();
   localStorage.setItem('mj_achievements_reset_v1','1');
-  clearSessionState();
   stars=0;studySeconds=0;rewardedHours=0;totalSessions=0;successfulSessions=0;todayStudyHours=0;seasonStudyHours=0;studyStreak=0;bestStudyStreak=0;tradeStudyMinutes=0;profit=0;
   owned=[];if(typeof ownedCustom!=='undefined')ownedCustom=[];
   plots=Array.from({length:9},()=>'locked');taskDone=[false,false,false];taskRewarded=false;
@@ -411,31 +409,9 @@ function mjResetAllAchievements(){
  }catch(e){console.error(e);toast('تعذر تصفير بعض البيانات؛ أعد فتح التطبيق')}
 }
 function showModal(s){document.getElementById('sheet').innerHTML=s;document.getElementById('modal').classList.add('show')}
-function applyFloatCompact(f,on){
- f.dataset.compact=on?'1':'';
- f.style.fontSize=on?'12px':'16px';f.style.padding=on?'6px 12px':'12px 20px';f.style.minWidth=on?'0':'190px';
-}
-// Drag support for the floating timer. Saves the position; a drag does not count as a tap.
-function attachFloatDrag(f){
- let sx=0,sy=0,ox=0,oy=0,moved=false,drag=false;
- try{const p=JSON.parse(localStorage.getItem('mj_float_pos')||'null');if(p){f.style.left=p.x+'px';f.style.top=p.y+'px';f.style.bottom='auto';f.style.transform='none'}}catch(e){}
- let lp=null;
- // Compact / full size: long-press (without moving) toggles it.
- applyFloatCompact(f,localStorage.getItem('mj_float_compact')==='1');
- f.addEventListener('pointerdown',e=>{drag=true;moved=false;sx=e.clientX;sy=e.clientY;const r=f.getBoundingClientRect();ox=r.left;oy=r.top;try{f.setPointerCapture(e.pointerId)}catch(err){}
-  clearTimeout(lp);lp=setTimeout(()=>{if(drag&&!moved){const on=!f.dataset.compact;applyFloatCompact(f,on);try{localStorage.setItem('mj_float_compact',on?'1':'0')}catch(err){}f._dragged=true;drag=false;updateFloatingTimer()}},550)});
- f.addEventListener('pointermove',e=>{
-  if(!drag)return;const dx=e.clientX-sx,dy=e.clientY-sy;
-  if(!moved&&Math.hypot(dx,dy)<6)return;moved=true;clearTimeout(lp);
-  const x=Math.max(0,Math.min(innerWidth-f.offsetWidth,ox+dx)),y=Math.max(0,Math.min(innerHeight-f.offsetHeight,oy+dy));
-  f.style.left=x+'px';f.style.top=y+'px';f.style.bottom='auto';f.style.transform='none';
- });
- const end=()=>{if(!drag)return;drag=false;if(moved){f._dragged=true;try{localStorage.setItem('mj_float_pos',JSON.stringify({x:parseInt(f.style.left),y:parseInt(f.style.top)}))}catch(e){}}};
- f.addEventListener('pointerup',end);f.addEventListener('pointercancel',end);
-}
 function ensureFloatingTimer(){
  let f=document.getElementById('mjFloatingTimer');
- if(!f){f=document.createElement('button');f.id='mjFloatingTimer';f.type='button';f.onclick=()=>{if(f._dragged){f._dragged=false;return}showActiveSession()};attachFloatDrag(f);
+ if(!f){f=document.createElement('button');f.id='mjFloatingTimer';f.type='button';f.onclick=()=>showActiveSession();
  f.style.cssText='display:none;position:fixed;z-index:99999;left:50%;transform:translateX(-50%);bottom:82px;border:0;border-radius:28px;padding:12px 20px;background:#174f45;color:#fff;box-shadow:0 5px 22px #0004;font-size:16px;font-weight:800;direction:rtl;min-width:190px';
  document.body.appendChild(f)}
  return f;
@@ -446,7 +422,7 @@ function updateFloatingTimer(){
  if(sessionState.running&&!document.getElementById('modal').classList.contains('show')){
   let n=Math.max(0,sessionState.remaining),h=Math.floor(n/3600),m=Math.floor(n%3600/60),sec=n%60;
   let clock=(h?String(h).padStart(2,'0')+':':'')+String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0');
-  f.textContent=f.dataset.compact?'⏱ '+clock:'⏱ '+clock+'　 عرض المؤقت';f.style.display='block';
+  f.textContent='⏱ '+clock+'　 عرض المؤقت';f.style.display='block';
  }else f.style.display='none';
 }
 function closeModal(){document.getElementById('modal').classList.remove('show');updateFloatingTimer()}
@@ -516,34 +492,15 @@ function runSessionClock(){
    if(sessionState.remaining===0){sessionState.phase='focus';sessionState.remaining=sessionState.mode==='open'?0:Math.max(0,sessionState.targetFocusSeconds-sessionState.focusElapsed);toast('انتهت الاستراحة، عُد للدراسة')}
  }
  todayStudyHours=studySeconds/3600;seasonStudyHours=Math.max(seasonStudyHours,studySeconds/3600);
- updateAchievements();paintSessionClock();updateFloatingTimer();saveSessionState();
+ updateAchievements();paintSessionClock();updateFloatingTimer();
  },250);
 }
 function takeEarlyBreak(){if(sessionState.phase==='focus'){sessionState.phase='break';sessionState.remaining=(sessionState.mode==='50/10'?600:300);paintSessionClock();toast('بدأت الاستراحة')}}
 function closeSessionView(){const noteId=sessionState.returnToNoteId;closeModal();if(noteId)tbOpenNoteBook(noteId)}
-// Session persistence: the running session is saved every tick so it survives closing the app.
-const SESSION_KEY='mj_session_v1';
-function saveSessionState(){
- if(!sessionState.running)return;
- try{localStorage.setItem(SESSION_KEY,JSON.stringify({mode:sessionState.mode,duration:sessionState.duration,phase:sessionState.phase,remaining:sessionState.remaining,focusElapsed:sessionState.focusElapsed,targetFocusSeconds:sessionState.targetFocusSeconds,startedAt:sessionState.startedAt,lastTick:sessionState.lastTick,savedAt:Date.now()}))}catch(e){}
-}
-function clearSessionState(){try{localStorage.removeItem(SESSION_KEY)}catch(e){}}
-// Restores an unfinished session as PAUSED. Time while the app was closed is not counted.
-function restoreSession(){
- let s=null;try{s=JSON.parse(localStorage.getItem(SESSION_KEY)||'null')}catch(e){}
- if(!s)return;
- Object.assign(sessionState,s,{running:false,interval:null});
- showModal(`<div style="direction:rtl;text-align:center"><h2>جلسة لم تكتمل</h2><p class="muted">التطبيق أُغلق أثناء الجلسة. الوقت اللي مرّ وأنت خارج التطبيق ما ينحسب.</p><p>تم حفظ ${formatStudyTime(s.focusElapsed)} حتى آخر لحظة</p><button class="btn" onclick="resumeStudySession()">استئناف الجلسة</button><button class="btn white" onclick="sessionState.running=true;finishStudySession()">إنهاء وحفظ الوقت</button></div>`);
-}
-function resumeStudySession(){
- closeModal();if(sessionState.running)return;
- sessionState.running=true;sessionState.lastTick=Date.now();
- showActiveSession();updateFloatingTimer();runSessionClock();saveSessionState();
-}
 function finishStudySession(){
  if(!sessionState.running)return;sessionState.running=false;clearInterval(sessionState.interval);
  if(sessionState.focusElapsed>0){totalSessions++;successfulSessions++;todayStudyHours=studySeconds/3600;seasonStudyHours=Math.max(seasonStudyHours,studySeconds/3600);updateAchievements();toast('تم حفظ '+formatStudyTime(sessionState.focusElapsed)+' في إنجازاتك')}
- sessionState.returnToNoteId=null;closeModal();updateFloatingTimer();clearSessionState();
+ sessionState.returnToNoteId=null;closeModal();updateFloatingTimer();
 }
 function resetSession(){sessionState.running=false;clearInterval(sessionState.interval);closeModal();openTimer()}
 function cancelStudySession(){finishStudySession()}
@@ -599,9 +556,9 @@ function buildingDetails(name,cost,b){
 }
 function buyBuilding(name,n){
  if(owned.includes(name)){toast('هذا المبنى ملكك بالفعل');return}
- if(!n&&!FREE_TEST){toast('هذا المبنى غير متاح للشراء');return}
- if(!FREE_TEST&&stars<n){toast('نجومك لا تكفي لشراء هذا المبنى');return}
- if(!FREE_TEST)stars-=n;owned.push(name);sync();renderMyShops();renderBuildings();updateProfit();
+ if(!n){toast('هذا المبنى غير متاح للشراء');return}
+ if(stars<n&&!FREE_STORE){toast('نجومك لا تكفي لشراء هذا المبنى');return}
+ if(!FREE_STORE)stars-=n;owned.push(name);sync();renderMyShops();renderBuildings();updateProfit();
  toast('تم شراء '+name+'! سيمنحك ⭐ '+rewardForBuilding(name)+' لكل ساعة دراسة');
 }
 // The trade daily cap resets at 23:30 Baghdad time (20:30 UTC).
@@ -631,7 +588,6 @@ function applyTradeStudyMinutes(minutes){
  }
 }
 rolloverProfit();updateProfit();
-restoreSession();
 renderMyShops();renderBuildings();
 const traders=['الذيبية.','🎀🦋Alaa','Noor Al_Huda','PH:MR7','١٨٠.','LEVI','يارب الياسمين معدل 97','MUSTAFA','Cris 🇵🇹','توت 🎀'];document.getElementById('traders').innerHTML=traders.map((n,i)=>`<div class="rankitem"><span class="ranknum">${i+1}</span><div class="face">${['🖤','🧑🏻‍🎤','🌷','🦊','👬','🌑','🦢','👓','⚽','🐰'][i]}</div><div class="who">${n}<small>10 متاجر · جمع ${2685-i*13} ⭐</small></div><span class="pill">⭐ 3,650</span></div>`).join('');function updateProfit(){document.getElementById('dailyprofit').textContent=profit+' / 300';document.getElementById('profitbar').style.width=(profit/3)+'%'}
 
@@ -733,8 +689,8 @@ function unlockPlot(i){
 }
 function plant(i,type){
  const c=cropTypes[type];if(!c)return;
- if(stars<c.price){toast('نجومك لا تكفي لشراء '+c.name);return}
- stars-=c.price;plots[i]={type,level:1,secs:0,buyPrice:c.price,paid:true};
+ if(stars<c.price&&!FREE_STORE){toast('نجومك لا تكفي لشراء '+c.name);return}
+ if(!FREE_STORE)stars-=c.price;plots[i]={type,level:1,secs:0,buyPrice:c.price,paid:true};
  sync();closeModal();drawPlots();selectPlot(i);toast('تم شراء وزراعة '+c.name+' 🌱');
 }
 function sellCrop(i){
@@ -756,9 +712,9 @@ const customItems=[
  {name:'دارك ويب',cat:'الألوان',price:300,preview:'',bg:'linear-gradient(135deg,#5289f4,#27b6e8)'}, {name:'دارك ويب 2',cat:'الألوان',price:400,preview:'',bg:'linear-gradient(135deg,#b56cf0,#7954df)'}, {name:'البنت العصبية',cat:'الإطارات',price:500,preview:'🌸'}, {name:'الأرنب والثعلب',cat:'الإطارات',price:650,preview:'🐰🦊'}, {name:'فتيات القوة',cat:'الإطارات',price:800,preview:'💖'}, {name:'المحقق كونان',cat:'الإطارات',price:900,preview:'🕵️'}, {name:'قالب بنوتة',cat:'الإطارات',price:1000,preview:'🎀',bg:'linear-gradient(135deg,#ff9acb,#f4c5e6)'}, {name:'قطة',cat:'الإطارات',price:1200,preview:'🐱'},
  {name:'ذهبي ملكي',cat:'الألوان',price:1500,preview:'',bg:'linear-gradient(135deg,#fff0a8,#e9b83d,#fff5c5)'}, {name:'الماس',cat:'الألوان',price:1500,preview:'',bg:'linear-gradient(135deg,#baf4ff,#3bbce9)'}, {name:'فضي ملكي',cat:'الألوان',price:2000,preview:'',bg:'linear-gradient(135deg,#f5f7fa,#aab6c8,#e8edf4)'}, {name:'لؤلؤي',cat:'الألوان',price:2000,preview:'',bg:'linear-gradient(135deg,#f7b7e8,#a7d8ff,#c27cf0)'}, {name:'Neon SS',cat:'الألوان',price:3000,preview:'',bg:'linear-gradient(135deg,#f000b8,#8c26ef,#00c9ff)'}, {name:'عاصفة السمو',cat:'الثيمات',price:3000,preview:'',bg:'linear-gradient(135deg,#8057d8,#f39a32)'}, {name:'بني',cat:'الثيمات',price:3500,preview:'',bg:'linear-gradient(135deg,#b77a52,#74452e)'}, {name:'المجرة',cat:'الثيمات',price:5000,preview:'🌌',bg:'radial-gradient(circle,#7135ad,#100c30)'}, {name:'المجرة 2',cat:'الثيمات',price:10000,preview:'🌠',bg:'radial-gradient(circle,#2862a8,#071329)'}, {name:'الطبيعة',cat:'الثيمات',price:13000,preview:'🌳',bg:'linear-gradient(135deg,#f2b65c,#458c62)'}, {name:'الكواكب',cat:'الثيمات',price:15000,preview:'🪐',bg:'radial-gradient(circle,#e4a04b,#17285d)'}, {name:'Neon',cat:'الثيمات',price:18000,preview:'🌃',bg:'linear-gradient(135deg,#111b63,#d500aa,#08d8ed)'}, {name:'لومبيا',cat:'الثيمات',price:20000,preview:'✨',bg:'radial-gradient(circle,#25d8ed,#12346c,#11152f)'}
 ];
-let ownedCustom=[],activeProfileSticker='☺',activeTheme='';
+const FREE_STORE=true;let ownedCustom=[],activeProfileSticker='☺',activeTheme='';
 function renderCustomStore(category='الكل',button=null){if(button){document.querySelectorAll('#customTabs button').forEach(x=>x.classList.remove('sel'));button.classList.add('sel')}document.getElementById('customStars').textContent=stars;let list=customItems.filter(x=>category==='الكل'||x.cat===category);document.getElementById('customGrid').innerHTML=list.map(x=>{let own=ownedCustom.includes(x.name),preview=x.bg?`<div class="custom-preview" style="background:${x.bg}"></div>`:`<div class="custom-preview ${x.cat==='الثيمات'?'circle':''}">${x.preview}</div>`;return `<div class="custom-item">${preview}<b>${x.name}</b><div class="custom-price">⭐ ${x.price===0?'مجاني':x.price}</div><button class="btn ${own?'owned':'soft'}" onclick="customAction('${x.name}')">${own?(activeProfileSticker===x.preview||activeTheme===x.name?'مفعّل':'تفعيل'):(x.price===0?'تفعيل الآن':'شراء الآن')}</button></div>`}).join('')}
-function customAction(name){let item=customItems.find(x=>x.name===name);if(!item)return;if(!ownedCustom.includes(name)){if(!FREE_TEST&&stars<item.price){toast('رصيدك لا يكفي · تحتاج '+item.price+' نجمة');return}if(!FREE_TEST)stars-=item.price;ownedCustom.push(name);sync();toast('تم شراء '+name+' بنجاح')}if(item.cat==='الملصقات'||item.cat==='الإطارات'){activeProfileSticker=item.preview||'☺';toast('تم تفعيل '+name+' في الملف الشخصي')}else{activeTheme=name;applyThemeStyle(name);toast('تم تفعيل ثيم '+name)}renderCustomStore(document.querySelector('#customTabs button.sel')?.textContent||'الكل')}
+function customAction(name){let item=customItems.find(x=>x.name===name);if(!item)return;if(!ownedCustom.includes(name)){if(stars<item.price&&!FREE_STORE){toast('رصيدك لا يكفي · تحتاج '+item.price+' نجمة');return}if(!FREE_STORE)stars-=item.price;ownedCustom.push(name);sync();toast('تم شراء '+name+' بنجاح')}if(item.cat==='الملصقات'||item.cat==='الإطارات'){activeProfileSticker=item.preview||'☺';toast('تم تفعيل '+name+' في الملف الشخصي')}else{activeTheme=name;document.documentElement.style.setProperty('--bg',item.bg||'#f7f8f0');toast('تم تفعيل ثيم '+name)}renderCustomStore(document.querySelector('#customTabs button.sel')?.textContent||'الكل')}
 renderCustomStore('الكل');
 document.getElementById('examgrid').innerHTML=[['📘','الوزاري','أسئلة وزارية حسب المادة'],['📝','امتحانات شهرية','اختبر مستواك'],['📚','الملازم','مراجعات وملخصات'],['⏱️','اختبار سريع','أسئلة بوقت محدد']].map(x=>`<div class="tile" onclick="toast('تم فتح ${x[1]} تجريبياً')"><span class="ico">${x[0]}</span><b>${x[1]}</b><small>${x[2]}</small></div>`).join('');(document.getElementById('achievementgrid')||{}).innerHTML=[['🔥','سلسلة الدراسة','3 أيام متتالية'],['⭐','جامع النجوم','جمعت 27 نجمة'],['📖','قارئ نشيط','أكملت جلسات دراسة'],['🌱','مزارع مبتدئ','زرعت أول محصول']].map(x=>`<div class="tile"><span class="ico">${x[0]}</span><b>${x[1]}</b><small>${x[2]}</small></div>`).join('');
 
@@ -1249,7 +1205,7 @@ function tbRenameNoteBook(id){const b=(TS.noteBooks||[]).find(x=>x.id===id);if(!
 function tbTogglePinNoteBook(id){const b=(TS.noteBooks||[]).find(x=>x.id===id);if(!b)return;b.pinned=!b.pinned;tsave();tbNotesSheet();tt(b.pinned?'تم تثبيت المسودة':'تم إلغاء تثبيت المسودة');}
 function tbDeleteNoteBook(id){const b=(TS.noteBooks||[]).find(x=>x.id===id);if(!b)return;if(!confirm('تحذف مسودة «'+b.name+'» نهائياً؟ لا يمكن التراجع عن الحذف.'))return;TS.noteBooks=TS.noteBooks.filter(x=>x.id!==id);if(b.key&&TS.noteDrafts)delete TS.noteDrafts[b.key];tsave();tbNotesSheet();tt('تم حذف المسودة');}
 function tbCreateNoteBook(){const name=prompt('اكتب اسم المسودة الجديدة:');if(!name||!name.trim())return;const id='nb_'+Date.now(),key='book:'+id,vid=TB.cur||null;TS.noteBooks=TS.noteBooks||[];TS.noteBooks.push({id,key,name:name.trim(),vid,createdAt:Date.now()});TS.noteDrafts=TS.noteDrafts||{};TS.noteDrafts[key]={text:'',strokes:[],items:[],pages:1,time:0,updatedAt:Date.now()};tsave();tbOpenNoteBook(id)}
-function tbOpenNoteBook(id){const b=(TS.noteBooks||[]).find(x=>x.id===id);if(!b)return;b.key=b.key||('book:'+b.id);TS.noteDrafts=TS.noteDrafts||{};if(!TS.noteDrafts[b.key])TS.noteDrafts[b.key]={text:'',strokes:[],items:[],pages:1,time:0,updatedAt:Date.now()};tsave();closeSheet();if(b.vid&&lec(b.vid)){TB.cur=b.vid;if(!TB.queue.includes(b.vid))TB.queue=[b.vid,...TB.queue]}tbNote(b.vid||null,b.key,b.name)}
+function tbOpenNoteBook(id){const b=(TS.noteBooks||[]).find(x=>x.id===id);if(!b)return;b.key=b.key||('book:'+b.id);TS.noteDrafts=TS.noteDrafts||{};if(!TS.noteDrafts[b.key])TS.noteDrafts[b.key]={text:'',strokes:[],items:[],pages:1,time:0,updatedAt:Date.now()};tsave();closeSheet();if(TB.page==='player'&&TB.cur&&lec(TB.cur))b.vid=TB.cur;if(b.vid&&lec(b.vid)){TB.cur=b.vid;if(!TB.queue.includes(b.vid))TB.queue=[b.vid,...TB.queue]}tbNote(b.vid||null,b.key,b.name)}
 function tbDelNote(id){TS.notes=TS.notes.filter(n=>n.id!==id);tsave();tbNotesSheet();tbSettings()}
 function sortedStats(o){return Object.entries(o).sort((a,b)=>b[1]-a[1])}
 function tbStatsSheet(){const s=sortedStats(TS.stats.subject);const mx=(s[0]||[0,1])[1];sheet('<h3>الإحصائيات</h3>'+(s.map(([n,v])=>'<div class="tb-goal"><div class="tx">'+esc(n)+'<small>'+(v/3600).toFixed(1)+' ساعة</small><div class="pr"><i style="width:'+Math.round(v/mx*100)+'%"></i></div></div></div>').join('')||'<div class="tb-empty">ستظهر هنا ساعات مشاهدتك لكل مادة.</div>'))}
@@ -1592,28 +1548,9 @@ customItems.forEach(function(x){x.key=x.id||x.name;if(x.name==='لومبيا')x.
 if(Array.isArray(st.owned)){st.owned.forEach(function(n){if(ownedCustom.indexOf(n)<0)ownedCustom.push(n)})}
 function persist(){st.owned=ownedCustom.slice();st.sticker=activeProfileSticker;st.theme=activeTheme;try{localStorage.setItem(SK,JSON.stringify(st))}catch(e){}}
 function bgFor(n){var it=customItems.find(function(x){return x.name===n});return it&&it.bg}
-// Applies a theme across the app: background, card, text and border colours.
-// Dark themes switch the text colours to light ones so text stays readable.
-function applyThemeStyle(name){
- let st=document.getElementById('themeStyle');
- if(!st){st=document.createElement('style');st.id='themeStyle';document.head.appendChild(st)}
- const item=customItems.find(function(x){return x.name===name});
- if(!item||!item.bg){st.textContent='';document.documentElement.style.removeProperty('--bg');return}
- const dark=/دارك|داكن|ليل|Dark|Night/i.test(name);
- const ink=dark?'#f2f5f3':'#24332f', paper=dark?'rgba(20,32,30,.9)':'rgba(255,255,255,.92)', muted=dark?'#b9c6c1':'#82938f';
- document.documentElement.style.setProperty('--bg',item.bg);
- st.textContent=':root{--ink:'+ink+';--paper:'+paper+';--muted:'+muted+'}'+
-  'body{background:'+item.bg+' fixed;color:'+ink+'}'+
-  '.card,.stat,.statrow .stat,.achievements-wrap{background:'+paper+'!important;color:'+ink+'!important}'+
-  '.nav{background:'+paper+'!important}.nav button,.nav button span{color:'+muted+'!important}.nav button.active,.nav button.active span{color:'+ink+'!important}'+
-  'header{background:'+paper+'!important;color:'+ink+'!important}header button,header strong{color:'+ink+'!important}'+
-  '.heading,.sub,.muted{color:'+ink+'!important}.live,.shophero,.farmhead{background:'+paper+'!important;color:'+ink+'!important}'+
-  '.btn.white,.btn.soft{color:'+ink+'!important}';
-}
-window.applyThemeStyle=applyThemeStyle;
 function applyTimer(){var it=customItems.find(function(x){return x.key===st.sel.timer});var u=it&&it.url;document.documentElement.style.setProperty('--timerbg',u?'url('+u+')':'none');var s=document.getElementById('mjTimerCss');if(!s){s=document.createElement('style');s.id='mjTimerCss';s.textContent='.hero,#sessionView,.session-view{background-image:var(--timerbg,none)!important;background-size:cover!important;background-position:center!important}';document.head.appendChild(s)}}
 if(st.sticker)activeProfileSticker=st.sticker;
-if(st.theme){activeTheme=st.theme;applyThemeStyle(st.theme)}
+if(st.theme){activeTheme=st.theme;var b=bgFor(st.theme);if(b)document.documentElement.style.setProperty('--bg',b)}
 applyTimer();
 var tabs=document.getElementById('customTabs');
 ['قوالب المؤقت','المؤقت العائم','الأصوات','لوحات الأرقام','VIP'].forEach(function(c){var b=document.createElement('button');b.textContent=c;b.onclick=function(){renderCustomStore(c,b)};tabs.appendChild(b)});
@@ -1626,7 +1563,7 @@ document.getElementById('customGrid').innerHTML=list.map(function(x){var own=own
 var pv=x.url?'<div class="custom-preview" style="background:url('+x.url+') center/cover"></div>':x.bg?'<div class="custom-preview" style="background:'+x.bg+'"></div>':'<div class="custom-preview '+(x.cat==='الثيمات'?'circle':'')+'">'+(x.preview||({'الأصوات':'🔊','VIP':'👑','لوحات الأرقام':'🎨','قوالب المؤقت':'⏱️','المؤقت العائم':'🫧'})[x.cat]||'')+'</div>';
 return '<div class="custom-item">'+pv+'<b>'+x.name+'</b>'+(x.desc?'<small class="muted" style="display:block;font-size:11px">'+x.desc+'</small>':'')+'<div class="custom-price">⭐ '+(x.price===0?'مجاني':x.price)+'</div><button class="btn '+(o2?'owned':'soft')+'" onclick="customAction(\''+x.name.replace(/'/g,"\\'")+'\')">'+(o2?(isActive(x)?'مفعّل':'تفعيل'):(x.price===0?'تفعيل الآن':'شراء الآن'))+'</button></div>'}).join('')};
 window.customAction=customAction=function(name){var item=customItems.find(function(x){return x.name===name});if(!item)return;
-if(ownedCustom.indexOf(name)<0){if(!FREE_TEST&&stars<item.price){toast('رصيدك لا يكفي · تحتاج '+item.price+' نجمة');return}if(!FREE_TEST)stars-=item.price;ownedCustom.push(name);sync();toast('تم شراء '+name+' بنجاح')}
+if(ownedCustom.indexOf(name)<0){if(stars<item.price&&!FREE_STORE){toast('رصيدك لا يكفي · تحتاج '+item.price+' نجمة');return}if(!FREE_STORE)stars-=item.price;ownedCustom.push(name);sync();toast('تم شراء '+name+' بنجاح')}
 var c=item.cat;
 if(c==='الملصقات'||c==='الإطارات'){activeProfileSticker=item.preview||'☺';toast('تم تفعيل '+name+' في الملف الشخصي')}
 else if(c==='قوالب المؤقت'){st.sel.timer=item.key;applyTimer();toast(item.url?'تم تفعيل '+name:'تم اختيار '+name+' (التصميم الرقمي المتحرك غير منقول بعد)')}
